@@ -16,10 +16,21 @@ const RegisterScreen = React.lazy(
     }))
 );
 
+const HomeScreen = React.lazy(
+  async () =>
+    await import("../screens/publicScreens").then((module) => ({
+      default: module.HomeScreen,
+    }))
+);
+
 const _publicRoutes = [
   {
     element: <PublicLayout />,
     children: [
+      {
+        element: <HomeScreen />,
+        path: "/",
+      },
       {
         element: <LoginScreen />,
         path: "login",
