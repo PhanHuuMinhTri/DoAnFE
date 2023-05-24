@@ -15,6 +15,35 @@ export const HomeStyled = styled(Row)`
       text-align: center;
       border-bottom: 2px dashed #eaeaef;
     }
+
+    .row-info {
+      margin-bottom: 20px;
+      .ant-image-img {
+        border-radius: 20px;
+        height: 300px;
+      }
+
+      .list-link {
+        margin-top: 20px;
+
+        &.list-link-second {
+          a {
+            background-color: #00ffff;
+          }
+        }
+        a {
+          display: inline-block;
+          color: #293142;
+          margin-right: 5px;
+          text-align: center;
+          border-radius: 8px;
+          line-height: 30px;
+          background-color: #7fff00;
+          width: 50px;
+          height: 30px;
+        }
+      }
+    }
   }
 `;
 

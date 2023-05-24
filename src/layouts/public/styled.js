@@ -4,7 +4,8 @@ import { Layout, Row, Button } from "antd";
 export const PublicLayoutStyle = styled(Layout)`
   width: 100%;
   height: 100%;
-  background-color: #7cdbca;
+  background-color: #fff;
+  background-image: url("https://dungmori.com/assets/img/new_home/x-o-bg.svg");
 
   .bottom-header {
     height: 1px;
@@ -13,6 +14,19 @@ export const PublicLayoutStyle = styled(Layout)`
 
   .body-content {
     padding-top: 10px;
+  }
+
+  .footer {
+    width: 100%;
+    height: 200px;
+    background-image: url("https://dungmori.com/assets/img/new_home/footer-bg.jpg");
+
+    .col-info {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 `;
 
