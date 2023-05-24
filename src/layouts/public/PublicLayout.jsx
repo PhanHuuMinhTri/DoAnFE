@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useOutlet, Link } from "react-router-dom";
-import { Layout, Col, Image, Menu, Select } from "antd";
+import { Layout, Col, Image, Menu, Select, Row, Typography } from "antd";
 
 import {
   PublicLayoutStyle,
@@ -127,6 +127,13 @@ export const PublicLayout = () => {
       </HeaderStyled>
       <div className="bottom-header" />
       <Content className="body-content">{outlet}</Content>
+      <Row className="footer">
+        <Col span={20} />
+        <Col span={4} className="col-info">
+          <Typography>Phan Huu Minh Tri</Typography>
+          <Typography>102190341</Typography>
+        </Col>
+      </Row>
     </PublicLayoutStyle>
   );
 };
