@@ -71,6 +71,13 @@ export const HeaderStyled = styled(Row)`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .avatar {
+      cursor: pointer;
+      margin-right: 10px;
+      width: 50px;
+      height: 50px;
+    }
   }
 `;
 

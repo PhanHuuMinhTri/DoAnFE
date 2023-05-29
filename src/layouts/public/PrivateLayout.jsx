@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import { useOutlet, Link } from "react-router-dom";
-import { Layout, Col, Image, Menu, Select, Row, Typography } from "antd";
-
 import {
-  PublicLayoutStyle,
-  HeaderStyled,
-  LoginButtonStyled,
-  RegisterButtonStyled,
-} from "./styled";
+  Layout,
+  Col,
+  Image,
+  Menu,
+  Select,
+  Row,
+  Typography,
+  Dropdown,
+} from "antd";
+
+import { PublicLayoutStyle, HeaderStyled } from "./styled";
 
 import LOGO from "../../assets/logo.png";
 
 const { Content } = Layout;
 
-const PublicLayout = () => {
+const PrivateLayout = () => {
   const outlet = useOutlet();
+  console.log("outlet", outlet);
 
   const [current, setCurrent] = useState("home");
 
@@ -22,9 +27,9 @@ const PublicLayout = () => {
     setCurrent(e.key);
   };
 
-  const items = [
+  const itemMenu = [
     {
-      label: <Link to={"/"}>HOME</Link>,
+      label: <Link to={"dashboard"}>HOME</Link>,
       key: "home",
     },
     {
@@ -100,24 +105,41 @@ const PublicLayout = () => {
     },
   ];
 
+  const items = [
+    {
+      key: "1",
+      label: <p>Profile</p>,
+    },
+    {
+      key: "2",
+      label: <p>Logout</p>,
+    },
+  ];
+
   return (
     <PublicLayoutStyle>
       <HeaderStyled>
         <Col span={1} className="col-logo">
           <Image preview={false} className="logo" src={LOGO} alt="logo" />
         </Col>
-        <Col span={17} className="col-menu">
+        <Col span={19} className="col-menu">
           <Menu
             onClick={onClick}
             selectedKeys={[current]}
             mode="horizontal"
-            items={items}
+            items={itemMenu}
           />
         </Col>
 
-        <Col span={6} className="col-auth">
-          <LoginButtonStyled>Login</LoginButtonStyled>
-          <RegisterButtonStyled>Register</RegisterButtonStyled>
+        <Col span={4} className="col-auth">
+          <Dropdown menu={{ items }} trigger={"hover"}>
+            <Image
+              preview={false}
+              className="avatar"
+              src={"https://img.freepik.com/free-icon/user_318-159711.jpg"}
+            />
+          </Dropdown>
+
           <Select
             options={itemSelect}
             style={{ width: 70 }}
@@ -138,4 +160,4 @@ const PublicLayout = () => {
   );
 };
 
-export default PublicLayout;
+export default PrivateLayout;

@@ -15,5 +15,19 @@ code {
     margin: 0;
 }
 
+.translate{
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: aqua ;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
 
 
