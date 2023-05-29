@@ -1,6 +1,7 @@
 import React from "react";
 
-import { PublicLayout } from "../layouts/public/PublicLayout";
+import PublicLayout from "../layouts/public/PublicLayout";
+import { RequiredAuth } from "./requiredAuth";
 
 const LoginScreen = React.lazy(
   async () =>
@@ -25,7 +26,11 @@ const HomeScreen = React.lazy(
 
 const _publicRoutes = [
   {
-    element: <PublicLayout />,
+    element: (
+      <RequiredAuth>
+        <PublicLayout />
+      </RequiredAuth>
+    ),
     children: [
       {
         element: <HomeScreen />,
