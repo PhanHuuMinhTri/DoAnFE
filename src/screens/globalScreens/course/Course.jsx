@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Col, Button, Typography, Image } from "antd";
-import { useParams } from "react-router-dom";
+import { Col, Typography, Image, Row } from "antd";
+import { ArrowRightOutlined } from "@ant-design/icons";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { domainAPI } from "../../../configs/dev";
 
-import { WrapperRowStyled } from "./styled";
+import { WrapperRowStyled, ButtonStyled } from "./styled";
 
 const { Title, Text } = Typography;
 
 const Course = () => {
   const { type } = useParams();
+  const navigate = useNavigate();
 
   const [infoCourse, setInfoCourse] = useState(null);
-  console.log("infoCourse", infoCourse);
 
   const getCourseInfo = async () => {
     const data = await axios.get(`${domainAPI}/course/${type}`);
     setInfoCourse(data.data);
+  };
+
+  const handleStudy = () => {
+    if (localStorage.getItem("isLogin")) {
+      navigate(`/course/${type}/study`);
+    } else {
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
@@ -25,39 +34,70 @@ const Course = () => {
   }, [type]);
 
   return (
-    <WrapperRowStyled>
+    <WrapperRowStyled gutter={[48, 48]}>
       <Col span={24}>
-        <Title>Khóa học: {infoCourse?.nameCourse.toUpperCase()}</Title>
+        <Title className="title">
+          Khóa học: {infoCourse?.nameCourse.toUpperCase()}
+        </Title>
       </Col>
-      <Col span={24}>
-        <Text>{infoCourse?.description}</Text>
-      </Col>
-      <Col span={24}>
-        <Image src={infoCourse?.imageCourse} />
-      </Col>
-      <Col span={24}>
-        <Text>Số lượng: {infoCourse?.numberLession} bài</Text>
-      </Col>
-
-      <Col span={24}>
-        <Text>Số bài test: {infoCourse?.numberTest} bài</Text>
-      </Col>
-      <Col span={24}>
-        <Text>Giáo viên: {infoCourse?.name} bài</Text>
-      </Col>
-      <Col span={24}>
-        <Image src={infoCourse?.avatar} />
-      </Col>
-      <Col span={24}>
-        <Text>Số điện thoại: {infoCourse?.phone}</Text>
-      </Col>
-
-      <Col span={24}>
-        <Button>
+      <Col span={24} className="col-btn">
+        <ButtonStyled
+          onClick={() => {
+            handleStudy();
+          }}
+        >
           {localStorage.getItem("isLogin")
             ? "Vào học ngay"
             : "Đăng nhập để học"}
-        </Button>
+          <ArrowRightOutlined />
+        </ButtonStyled>
+      </Col>
+      <Col span={18} className="col-info">
+        <Row gutter={[24, 24]}>
+          <Col span={24}>
+            <Text className="description">{infoCourse?.description}</Text>
+          </Col>
+
+          <Col span={24}>
+            <Text>
+              <strong>Số lượng:</strong> {infoCourse?.numberLession} bài
+            </Text>
+          </Col>
+
+          <Col span={24}>
+            <Text>
+              <strong>Số bài test:</strong> {infoCourse?.numberTest} bài{" "}
+            </Text>
+          </Col>
+          <Col span={24}>
+            <Image
+              className="img-info"
+              src={infoCourse?.imageCourse}
+              preview={false}
+            />
+          </Col>
+        </Row>
+      </Col>
+      <Col span={6} className="col-teacher">
+        <Row gutter={[24, 24]}>
+          <Col span={24}>
+            <Text className="col-name">
+              <strong>Giáo viên: </strong> {infoCourse?.name}
+            </Text>
+          </Col>
+          <Col span={24}>
+            <Image
+              className="img-teacher"
+              preview={false}
+              src={infoCourse?.avatar}
+            />
+          </Col>
+          <Col span={24} className="col-sdt">
+            <Text>
+              <strong>Số điện thoại: </strong> {infoCourse?.phone}
+            </Text>
+          </Col>
+        </Row>
       </Col>
     </WrapperRowStyled>
   );

@@ -1,8 +1,15 @@
 import styled from "styled-components";
-import { Modal, Input } from "antd";
-import { Stage, Rect } from "react-konva";
+import { Modal, Input, Row } from "antd";
 
 export const ModalStyled = styled(Modal)`
+  .ant-modal-content {
+    background-color: #d5ebff;
+  }
+
+  .ant-modal-title {
+    background-color: #d5ebff;
+  }
+
   .col-search {
     display: flex;
     align-items: center;
@@ -38,6 +45,7 @@ export const ModalStyled = styled(Modal)`
       height: 40px;
       display: flex;
       align-items: center;
+      background-color: #ffffff;
 
       .item {
         cursor: pointer;
@@ -60,14 +68,6 @@ export const InputStyled = styled(Input)`
   border-radius: 30px;
 `;
 
-export const StageWrapper = styled(Stage)`
-  width: 100%;
-`;
-
-export const RectWrapper = styled(Rect)`
-  width: 100%;
-`;
-
 export const ButtonTool = styled.button`
   width: 60px;
   height: 30px;
@@ -77,5 +77,60 @@ export const ButtonTool = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #d9d9d9;
+  }
+`;
+
+export const RowTranslateStyled = styled(Row)`
+  margin-top: 20px;
+  .title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #1677ff;
+  }
+
+  .col-image {
+    display: flex;
+    justify-content: center;
+
+    .box-image {
+      width: 200px;
+      background-color: #ffffff;
+      height: 300px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+    }
+  }
+
+  .col-mean {
+    .box-mean {
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      background-color: #ffffff;
+
+      .mean {
+        padding: 20px;
+      }
+    }
+  }
+
+  .col-info {
+    padding: 0 20px;
+
+    .box-write {
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+    }
+
+    .box-vocabulary {
+      background-color: #ffffff;
+      margin-top: 20px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+    }
   }
 `;
