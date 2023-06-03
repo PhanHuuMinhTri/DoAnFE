@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardComponentStyled = styled.div`
   &.card {
     margin: 10px auto;
-    background: linear-gradient(#c75600, #f88d35);
+    background: #96d962;
     height: 500px;
     width: 500px;
     display: flex;
@@ -22,7 +22,7 @@ export const CardComponentStyled = styled.div`
   }
 
   &.side {
-    background: linear-gradient(#c75600, #f88d35);
+    background: #96d962;
     transform: rotateY(-180deg);
   }
 

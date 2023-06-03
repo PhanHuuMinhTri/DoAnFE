@@ -3,11 +3,11 @@ import { Modal, Input, Row } from "antd";
 
 export const ModalStyled = styled(Modal)`
   .ant-modal-content {
-    background-color: #d5ebff;
+    background-color: #f7fff0;
   }
 
   .ant-modal-title {
-    background-color: #d5ebff;
+    background-color: #f7fff0;
   }
 
   .col-search {
@@ -90,7 +90,7 @@ export const RowTranslateStyled = styled(Row)`
     border-top-left-radius: 8px;
     width: 100%;
     height: 40px;
-    background-color: #1677ff;
+    background-color: #96d962;
   }
 
   .col-image {
