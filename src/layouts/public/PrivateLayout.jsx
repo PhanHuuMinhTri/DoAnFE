@@ -64,23 +64,23 @@ const PrivateLayout = () => {
       children: [
         {
           label: <Link to={"/course/n5"}>N5</Link>,
-          key: "/online",
+          key: "/online-n5",
         },
         {
           label: <Link to={"/course/n4"}>N4</Link>,
-          key: "/online",
+          key: "/online-4",
         },
         {
           label: <Link to={"/course/n3"}>N3</Link>,
-          key: "/online",
+          key: "/online-n3",
         },
         {
           label: <Link to={"/course/n2"}>N2</Link>,
-          key: "/online",
+          key: "/online-n2",
         },
         {
           label: <Link to={"/course/n1"}>N1</Link>,
-          key: "/online",
+          key: "/online-n1",
         },
       ],
     },

@@ -162,7 +162,8 @@ const CourseStudyScreen = () => {
         <MenuStyled
           mode="inline"
           style={{
-            width: 256,
+            width: "90%",
+            borderRight: "2px dashed #96d962",
           }}
           onSelect={(item) => {
             handleSeclect(item);

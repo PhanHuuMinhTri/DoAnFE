@@ -7,6 +7,7 @@ export const WrapperRowStyled = styled(Row)`
   .title {
     text-align: center;
     font-size: 48px;
+    background-color: #96d962;
   }
 
   .col-info {

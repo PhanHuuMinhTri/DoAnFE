@@ -15,6 +15,21 @@ export const CourseStudyStyled = styled(Row)`
   .img-course {
     border-radius: 20px;
   }
+
+  .col-study {
+    padding-left: 20px;
+  }
 `;
 
-export const MenuStyled = styled(Menu)``;
+export const MenuStyled = styled(Menu)`
+  background-color: #f7fff0;
+  border-radius: 10px;
+  border: 2px dashed #96d962;
+  font-size: 16px;
+  font-weight: 500;
+
+  .ant-menu-item-selected {
+    background-color: #96d962;
+    color: black;
+  }
+`;
