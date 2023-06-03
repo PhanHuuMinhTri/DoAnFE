@@ -10,6 +10,27 @@ const HomeScreen = React.lazy(
     }))
 );
 
+const WriteKanjiScreen = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.WriteKanjiScreen,
+    }))
+);
+
+const PracticeKanjiScreen = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.PracticeKanjiScreen,
+    }))
+);
+
+const CourseStudyScreen = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.CourseStudyScreen,
+    }))
+);
+
 const _privateRoutes = [
   {
     element: (
@@ -21,6 +42,19 @@ const _privateRoutes = [
       {
         element: <HomeScreen />,
         path: "/dashboard",
+      },
+
+      {
+        element: <PracticeKanjiScreen />,
+        path: "/write-kanji",
+      },
+      {
+        element: <WriteKanjiScreen />,
+        path: "/write-kanji/:id",
+      },
+      {
+        element: <CourseStudyScreen />,
+        path: "course/:id/study",
       },
     ],
   },

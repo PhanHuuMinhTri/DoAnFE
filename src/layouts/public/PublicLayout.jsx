@@ -80,10 +80,6 @@ const PublicLayout = () => {
       ],
     },
     {
-      label: <Link to={"offline"}>OFFLINE</Link>,
-      key: "offline",
-    },
-    {
       label: <Link to={"teacher"}>TEACHER</Link>,
       key: "teacher",
     },

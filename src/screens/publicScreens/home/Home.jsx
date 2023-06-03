@@ -54,11 +54,11 @@ const HomeScreen = () => {
                   kiến thức theo từng level khác nhau.
                 </Typography>
                 <div className="list-link">
-                  <Link>N5</Link>
-                  <Link>N4</Link>
-                  <Link>N3</Link>
-                  <Link>N2</Link>
-                  <Link>N1</Link>
+                  <Link to={"/course/n5"}>N5</Link>
+                  <Link to={"/course/n4"}>N4</Link>
+                  <Link to={"/course/n3"}>N3</Link>
+                  <Link to={"/course/n2"}>N2</Link>
+                  <Link to={"/course/n1"}>N1</Link>
                 </div>
               </Col>
               <Col span={1} />

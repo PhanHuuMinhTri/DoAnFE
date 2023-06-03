@@ -24,7 +24,7 @@ code {
     position: fixed;
     bottom: 20px;
     right: 10px;
-    background-color: aqua ;
+    background-color: #96D962 ;
     border-radius: 10px;
     flex-direction: column;
 }

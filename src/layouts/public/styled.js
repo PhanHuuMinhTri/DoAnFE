@@ -32,6 +32,9 @@ export const PublicLayoutStyle = styled(Layout)`
 
 export const HeaderStyled = styled(Row)`
   padding: 10px 200px;
+
+  background-color: #5bbd2b;
+
   .col-logo {
     display: flex;
     align-items: center;

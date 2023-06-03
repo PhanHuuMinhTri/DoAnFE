@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useOutlet, Link } from "react-router-dom";
+import { useOutlet, Link, useLocation } from "react-router-dom";
 import {
   Layout,
   Col,
@@ -19,7 +19,7 @@ const { Content } = Layout;
 
 const PrivateLayout = () => {
   const outlet = useOutlet();
-  console.log("outlet", outlet);
+  const location = useLocation();
 
   const [current, setCurrent] = useState("home");
 
@@ -30,11 +30,11 @@ const PrivateLayout = () => {
   const itemMenu = [
     {
       label: <Link to={"dashboard"}>HOME</Link>,
-      key: "home",
+      key: "/dashboard",
     },
     {
       label: "TEST ONLINE",
-      key: "test-online",
+      key: "/test-online",
       children: [
         {
           label: "N5",
@@ -60,37 +60,37 @@ const PrivateLayout = () => {
     },
     {
       label: "ONLINE",
-      key: "online",
+      key: "/online",
       children: [
         {
           label: <Link to={"/course/n5"}>N5</Link>,
-          key: "online-n5",
+          key: "/online",
         },
         {
           label: <Link to={"/course/n4"}>N4</Link>,
-          key: "online-n4",
+          key: "/online",
         },
         {
           label: <Link to={"/course/n3"}>N3</Link>,
-          key: "online-n3",
+          key: "/online",
         },
         {
           label: <Link to={"/course/n2"}>N2</Link>,
-          key: "online-n2",
+          key: "/online",
         },
         {
           label: <Link to={"/course/n1"}>N1</Link>,
-          key: "online-n1",
+          key: "/online",
         },
       ],
     },
     {
-      label: <Link to={"offline"}>OFFLINE</Link>,
-      key: "offline",
+      label: <Link to={"write-kanji"}>WRITE KANJI</Link>,
+      key: "/write-kanji",
     },
     {
       label: <Link to={"teacher"}>TEACHER</Link>,
-      key: "teacher",
+      key: "/teacher",
     },
   ];
 
@@ -125,7 +125,7 @@ const PrivateLayout = () => {
         <Col span={19} className="col-menu">
           <Menu
             onClick={onClick}
-            selectedKeys={[current]}
+            selectedKeys={[location.pathname]}
             mode="horizontal"
             items={itemMenu}
           />
