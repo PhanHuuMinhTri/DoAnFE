@@ -80,6 +80,18 @@ export const HeaderStyled = styled(Row)`
       width: 50px;
       height: 50px;
     }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .name {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
   }
 `;
 

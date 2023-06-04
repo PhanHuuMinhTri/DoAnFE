@@ -3,7 +3,7 @@ import { Card } from "antd";
 
 export const CardStyled = styled(Card)`
   margin-bottom: 10px;
-  background-color: #00ffcc;
+  background-color: #96d962;
   cursor: pointer;
 
   .ant-card-head {
