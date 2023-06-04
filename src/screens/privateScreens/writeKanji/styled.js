@@ -20,7 +20,7 @@ export const WrapperWriteKanjiStyled = styled(Row)`
     .box-kanji {
       display: flex;
       justify-content: center;
-      background-color: #eeeeee;
+      background-color: #96d962;
       padding: 10px;
 
       .kanji {

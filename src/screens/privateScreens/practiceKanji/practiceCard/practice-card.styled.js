@@ -4,7 +4,7 @@ import { Card, Button } from "antd";
 export const CardStyled = styled(Card)`
   width: 500px;
   height: 150px;
-  background-color: #00ffcc;
+  background-color: #96d962;
 
   .ant-card-head {
     background-color: #ffccff;

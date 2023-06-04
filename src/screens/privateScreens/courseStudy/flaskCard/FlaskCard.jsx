@@ -8,7 +8,6 @@ import { FlaskCardStyled } from "./FlaskCard.styled";
 const { Title } = Typography;
 
 const FlaskCard = ({ lessonInfo }) => {
-  console.log("id", lessonInfo);
   return (
     <FlaskCardStyled>
       <Title className="title-flaskcard">Cùng học với Flashcard nào!!!</Title>

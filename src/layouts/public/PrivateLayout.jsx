@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useOutlet, Link, useLocation } from "react-router-dom";
+import { useOutlet, Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Layout,
   Col,
@@ -20,6 +20,7 @@ const { Content } = Layout;
 const PrivateLayout = () => {
   const outlet = useOutlet();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [current, setCurrent] = useState("home");
 
@@ -94,6 +95,13 @@ const PrivateLayout = () => {
     },
   ];
 
+  const handleLogout = () => {
+    localStorage.setItem("isLogin", "");
+    localStorage.setItem("idUser", "");
+    localStorage.setItem("name", "");
+    navigate("/login");
+  };
+
   const itemSelect = [
     {
       label: "EN",
@@ -112,7 +120,7 @@ const PrivateLayout = () => {
     },
     {
       key: "2",
-      label: <p>Logout</p>,
+      label: <p onClick={handleLogout}>Logout</p>,
     },
   ];
 
@@ -132,13 +140,16 @@ const PrivateLayout = () => {
         </Col>
 
         <Col span={4} className="col-auth">
-          <Dropdown menu={{ items }} trigger={"hover"}>
-            <Image
-              preview={false}
-              className="avatar"
-              src={"https://img.freepik.com/free-icon/user_318-159711.jpg"}
-            />
-          </Dropdown>
+          <div className="profile">
+            <Dropdown menu={{ items }} trigger={"hover"}>
+              <Image
+                preview={false}
+                className="avatar"
+                src={"https://img.freepik.com/free-icon/user_318-159711.jpg"}
+              />
+            </Dropdown>
+            <p className="name">Hello {localStorage.getItem("name")}</p>
+          </div>
 
           <Select
             options={itemSelect}

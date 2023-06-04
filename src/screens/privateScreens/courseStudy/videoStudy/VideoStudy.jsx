@@ -9,8 +9,8 @@ const VideoStudy = ({ lessonInfo }) => {
   return (
     <>
       <VideoStyled>
-        <Col span={24} className="col-video">
-          <Title level={3}>Video bài {lessonInfo?.indexLesson}</Title>
+        <Col span={24}>
+          <Title level={3}>Video bài {lessonInfo?.indexLesson}:</Title>
         </Col>
         <Col span={24} className="col-video">
           <ReactPlayer

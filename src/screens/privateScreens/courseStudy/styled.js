@@ -8,7 +8,6 @@ export const CourseStudyStyled = styled(Row)`
 
   .title {
     text-align: center;
-    margin-bottom: 50px;
     background-color: #96d962;
   }
 
@@ -16,8 +15,32 @@ export const CourseStudyStyled = styled(Row)`
     border-radius: 20px;
   }
 
+  .col-history {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+
+    .text-history {
+      font-style: italic;
+      color: #00ff00;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
   .col-study {
     padding-left: 20px;
+  }
+
+  .col-right {
+    padding-right: 20px;
+    .box-progress {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
 

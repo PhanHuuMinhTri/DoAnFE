@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useOutlet, Link } from "react-router-dom";
+import { useOutlet, Link, useNavigate } from "react-router-dom";
 import { Layout, Col, Image, Menu, Select, Row, Typography } from "antd";
 
 import {
@@ -15,6 +15,7 @@ const { Content } = Layout;
 
 const PublicLayout = () => {
   const outlet = useOutlet();
+  const navigate = useNavigate();
 
   const [current, setCurrent] = useState("home");
 
@@ -112,8 +113,20 @@ const PublicLayout = () => {
         </Col>
 
         <Col span={6} className="col-auth">
-          <LoginButtonStyled>Login</LoginButtonStyled>
-          <RegisterButtonStyled>Register</RegisterButtonStyled>
+          <LoginButtonStyled
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </LoginButtonStyled>
+          <RegisterButtonStyled
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            Register
+          </RegisterButtonStyled>
           <Select
             options={itemSelect}
             style={{ width: 70 }}
