@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useOutlet, Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Layout,
@@ -19,49 +20,48 @@ const { Content } = Layout;
 
 const PrivateLayout = () => {
   const outlet = useOutlet();
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const [current, setCurrent] = useState("home");
+  const { t, i18n } = useTranslation();
 
-  const onClick = (e) => {
-    setCurrent(e.key);
+  const handleLanguageChange = (value) => {
+    i18n.changeLanguage(value);
   };
 
   const itemMenu = [
     {
       label: <Link to={"dashboard"}>HOME</Link>,
-      key: "/dashboard",
+      key: "dashboard",
     },
     {
       label: "TEST ONLINE",
       key: "/test-online",
       children: [
         {
-          label: "N5",
+          label: <Link to={"/test-online/n5"}>N5</Link>,
           key: "test-online-n5",
         },
         {
-          label: "N4",
+          label: <Link to={"/test-online/n4"}>N4</Link>,
           key: "test-online-n4",
         },
         {
-          label: "N3",
+          label: <Link to={"/test-online/n3"}>N3</Link>,
           key: "test-online-n3",
         },
         {
-          label: "N2",
+          label: <Link to={"/test-online/n2"}>N2</Link>,
           key: "test-online-n2",
         },
         {
-          label: "N1",
+          label: <Link to={"/test-online/n1"}>N1</Link>,
           key: "test-online-n1",
         },
       ],
     },
     {
       label: "ONLINE",
-      key: "/online",
+      key: "course",
       children: [
         {
           label: <Link to={"/course/n5"}>N5</Link>,
@@ -96,9 +96,9 @@ const PrivateLayout = () => {
   ];
 
   const handleLogout = () => {
-    localStorage.setItem("isLogin", "");
-    localStorage.setItem("idUser", "");
-    localStorage.setItem("name", "");
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("idUser");
+    localStorage.removeItem("name");
     navigate("/login");
   };
 
@@ -108,8 +108,8 @@ const PrivateLayout = () => {
       value: "EN",
     },
     {
-      label: "JP",
-      value: "JP",
+      label: "VI",
+      value: "vi",
     },
   ];
 
@@ -132,10 +132,9 @@ const PrivateLayout = () => {
         </Col>
         <Col span={19} className="col-menu">
           <Menu
-            onClick={onClick}
-            selectedKeys={[location.pathname]}
             mode="horizontal"
             items={itemMenu}
+            defaultSelectedKeys={"dashboard"}
           />
         </Col>
 
@@ -152,6 +151,7 @@ const PrivateLayout = () => {
           </div>
 
           <Select
+            onChange={handleLanguageChange}
             options={itemSelect}
             style={{ width: 70 }}
             defaultValue={"EN"}

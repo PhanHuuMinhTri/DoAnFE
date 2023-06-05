@@ -24,6 +24,13 @@ const HomeScreen = React.lazy(
     }))
 );
 
+const Course = React.lazy(
+  async () =>
+    await import("../screens/publicScreens").then((module) => ({
+      default: module.Course,
+    }))
+);
+
 const _publicRoutes = [
   {
     element: (
@@ -43,6 +50,10 @@ const _publicRoutes = [
       {
         element: <RegisterScreen />,
         path: "register",
+      },
+      {
+        element: <Course />,
+        path: "/course/public/:type",
       },
     ],
   },

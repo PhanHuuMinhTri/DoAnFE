@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useOutlet, Link, useNavigate } from "react-router-dom";
+import { useOutlet, Link, useNavigate, useLocation } from "react-router-dom";
 import { Layout, Col, Image, Menu, Select, Row, Typography } from "antd";
 
 import {
@@ -24,12 +24,6 @@ const PublicLayout = () => {
   const outlet = useOutlet();
   const navigate = useNavigate();
 
-  const [current, setCurrent] = useState("home");
-
-  const onClick = (e) => {
-    setCurrent(e.key);
-  };
-
   const items = [
     {
       label: <Link to={"/"}>HOME</Link>,
@@ -40,50 +34,50 @@ const PublicLayout = () => {
       key: "test-online",
       children: [
         {
-          label: "N5",
+          label: <Link to={"/test-online/n5"}>N5</Link>,
           key: "test-online-n5",
         },
         {
-          label: "N4",
+          label: <Link to={"/test-online/n4"}>N4</Link>,
           key: "test-online-n4",
         },
         {
-          label: "N3",
+          label: <Link to={"/test-online/n3"}>N3</Link>,
           key: "test-online-n3",
         },
         {
-          label: "N2",
+          label: <Link to={"/test-online/n2"}>N2</Link>,
           key: "test-online-n2",
         },
         {
-          label: "N1",
+          label: <Link to={"/test-online/n1"}>N1</Link>,
           key: "test-online-n1",
         },
       ],
     },
     {
       label: "ONLINE",
-      key: "online",
+      key: "course",
       children: [
         {
-          label: <Link to={"/course/n5"}>N5</Link>,
-          key: "online-n5",
+          label: <Link to={"/course/public/n5"}>N5</Link>,
+          key: "course-n5",
         },
         {
-          label: <Link to={"/course/n4"}>N4</Link>,
-          key: "online-n4",
+          label: <Link to={"/course/public/n4"}>N4</Link>,
+          key: "course-n4",
         },
         {
-          label: <Link to={"/course/n3"}>N3</Link>,
-          key: "online-n3",
+          label: <Link to={"/course/public/n3"}>N3</Link>,
+          key: "course-n3",
         },
         {
-          label: <Link to={"/course/n2"}>N2</Link>,
-          key: "online-n2",
+          label: <Link to={"/course/public/n2"}>N2</Link>,
+          key: "course-n2",
         },
         {
-          label: <Link to={"/course/n1"}>N1</Link>,
-          key: "online-n1",
+          label: <Link to={"/course/public/n1"}>N1</Link>,
+          key: "course-n1",
         },
       ],
     },
@@ -111,12 +105,7 @@ const PublicLayout = () => {
           <Image preview={false} className="logo" src={LOGO} alt="logo" />
         </Col>
         <Col span={17} className="col-menu">
-          <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-          />
+          <Menu defaultSelectedKeys={"home"} mode="horizontal" items={items} />
         </Col>
 
         <Col span={6} className="col-auth">

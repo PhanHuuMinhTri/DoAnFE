@@ -31,6 +31,19 @@ const CourseStudyScreen = React.lazy(
     }))
 );
 
+const Course = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.Course,
+    }))
+);
+
+const TestOnline = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.TestOnline,
+    }))
+);
 const _privateRoutes = [
   {
     element: (
@@ -38,12 +51,22 @@ const _privateRoutes = [
         <PrivateLayout />
       </ProtectedRoutes>
     ),
+    // eslint-disable-next-line no-sparse-arrays
     children: [
       {
         element: <HomeScreen />,
         path: "/dashboard",
       },
+      ,
+      {
+        element: <Course />,
+        path: "/course/:type",
+      },
 
+      {
+        element: <TestOnline />,
+        path: "/test-online/:id",
+      },
       {
         element: <PracticeKanjiScreen />,
         path: "/write-kanji",
