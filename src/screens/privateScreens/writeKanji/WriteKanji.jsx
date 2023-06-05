@@ -26,7 +26,6 @@ const WriteKanjiScreen = () => {
   const [result, setResult] = useState(initailResult);
 
   const [listKanji, setListKanji] = useState([]);
-  console.log("listKanji", listKanji);
   const getListKanji = async () => {
     const res = await axios.get(
       `${domainAPI}/write-kanji/practice-kanji/${id}`

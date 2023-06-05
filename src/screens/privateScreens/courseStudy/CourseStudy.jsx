@@ -21,11 +21,7 @@ const CourseStudyScreen = () => {
   const [progress, setProgress] = useState(0);
   const [historyStudy, setHistoryStudy] = useState({});
 
-  console.log("historyStudy", historyStudy);
-
   const { id } = useParams();
-
-  console.log("lessonInfo", lessonInfo);
 
   const getHistoryStudy = async () => {
     const res = await axios.get(
