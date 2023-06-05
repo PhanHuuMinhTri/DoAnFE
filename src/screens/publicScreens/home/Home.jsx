@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, Typography } from "antd";
+import { useTranslation } from "react-i18next";
 
 import { CarouselStyled, HomeStyled } from "./styled";
 
@@ -15,6 +16,8 @@ import DuHoc from "../../../assets/images/du-hoc-nhat.jpg";
 const { Title } = Typography;
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
+
   return (
     <HomeStyled>
       <Col span={24} className="col-carousel">
@@ -36,7 +39,7 @@ const HomeScreen = () => {
 
       <Col span={24} className="col-course-info">
         <Title className="title" level={2}>
-          プロダクト
+          プロダクト {t("homePage.test")}
         </Title>
         <Row>
           <Col span={24}>

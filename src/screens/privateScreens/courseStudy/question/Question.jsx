@@ -68,7 +68,6 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
     }
   };
 
-  console.log("value formil", formik.values);
   useEffect(() => {
     setPoint(0);
     setListIsCorrect([]);

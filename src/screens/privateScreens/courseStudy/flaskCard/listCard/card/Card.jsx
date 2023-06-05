@@ -5,11 +5,8 @@ import { CardComponentStyled } from "./card.styled";
 export default function Card({ card }) {
   const [side, setSide] = useState();
 
-  console.log("card", card);
-
   function handleClick() {
     setSide(!side);
-    console.log(side);
   }
   return (
     <CardComponentStyled

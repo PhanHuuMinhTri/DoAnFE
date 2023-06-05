@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useOutlet, Link, useNavigate } from "react-router-dom";
 import { Layout, Col, Image, Menu, Select, Row, Typography } from "antd";
 
@@ -14,6 +15,12 @@ import LOGO from "../../assets/logo.png";
 const { Content } = Layout;
 
 const PublicLayout = () => {
+  const { t, i18n } = useTranslation();
+
+  const handleLanguageChange = (value) => {
+    i18n.changeLanguage(value);
+  };
+
   const outlet = useOutlet();
   const navigate = useNavigate();
 
@@ -89,11 +96,11 @@ const PublicLayout = () => {
   const itemSelect = [
     {
       label: "EN",
-      value: "EN",
+      value: "en",
     },
     {
-      label: "JP",
-      value: "JP",
+      label: "VI",
+      value: "vi",
     },
   ];
 
@@ -128,6 +135,7 @@ const PublicLayout = () => {
             Register
           </RegisterButtonStyled>
           <Select
+            onChange={handleLanguageChange}
             options={itemSelect}
             style={{ width: 70 }}
             defaultValue={"EN"}
