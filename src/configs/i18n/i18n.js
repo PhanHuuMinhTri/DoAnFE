@@ -10,9 +10,9 @@ i18n
   .use(initReactI18next)
   .init({
     returnNull: false,
-    fallbackLng: LANGUAGE.EN,
+    fallbackLng: LANGUAGE.VI,
     debug: false,
-    lng: LANGUAGE.VI,
+    lng: LANGUAGE.EN,
     resources: {
       en: {
         translation: en,

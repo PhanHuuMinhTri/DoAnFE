@@ -62,7 +62,8 @@ export const HeaderStyled = styled(Row)`
       background-color: transparent;
       border: none;
 
-      .ant-menu-item-selected {
+      .ant-menu-item-selected,
+      .ant-menu-submenu-selected {
         background-color: #96d962;
         color: black;
       }

@@ -60,7 +60,7 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
       setListMyAnswer(Object.values(res?.data?.values));
       formik.resetForm();
       listQuestionFix = [];
-      getProgress();
+      await getProgress();
       setIsLoading(false);
     } catch (error) {
       console.log("err", error);

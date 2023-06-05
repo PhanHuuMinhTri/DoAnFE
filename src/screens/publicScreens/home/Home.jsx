@@ -57,11 +57,23 @@ const HomeScreen = () => {
                   kiến thức theo từng level khác nhau.
                 </Typography>
                 <div className="list-link">
-                  <Link to={"/course/n5"}>N5</Link>
-                  <Link to={"/course/n4"}>N4</Link>
-                  <Link to={"/course/n3"}>N3</Link>
-                  <Link to={"/course/n2"}>N2</Link>
-                  <Link to={"/course/n1"}>N1</Link>
+                  {localStorage.getItem("isLogin") ? (
+                    <>
+                      <Link to={"/course/n5"}>N5</Link>
+                      <Link to={"/course/n4"}>N4</Link>
+                      <Link to={"/course/n3"}>N3</Link>
+                      <Link to={"/course/n2"}>N2</Link>
+                      <Link to={"/course/n1"}>N1</Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to={"/course/public/n5"}>N5</Link>
+                      <Link to={"/course/public/n4"}>N4</Link>
+                      <Link to={"/course/public/n3"}>N3</Link>
+                      <Link to={"/course/public/n2"}>N2</Link>
+                      <Link to={"/course/public/n1"}>N1</Link>
+                    </>
+                  )}
                 </div>
               </Col>
               <Col span={1} />
