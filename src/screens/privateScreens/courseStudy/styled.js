@@ -9,6 +9,9 @@ export const CourseStudyStyled = styled(Row)`
   .title {
     text-align: center;
     background-color: #96d962;
+    line-height: 100px;
+    font-size: 48px;
+    height: 100px;
   }
 
   .img-course {

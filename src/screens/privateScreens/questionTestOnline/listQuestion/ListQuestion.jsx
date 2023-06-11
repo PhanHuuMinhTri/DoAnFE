@@ -4,21 +4,24 @@ import axios from "axios";
 import { domainAPI } from "../../../../configs/dev";
 import { useFormik } from "formik";
 
-import { QuestionStyled } from "./Question.styled";
+import { QuestionStyled } from "./ListQuestion.styled";
+
 const { Text } = Typography;
-const Question = ({ courseId, questions, lessonId, getProgress }) => {
+
+const ListQuestion = ({ questions, testId }) => {
   const [listIsCorrect, setListIsCorrect] = useState([]);
-  const [point, setPoint] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [listMyAnswer, setListMyAnswer] = useState([]);
+  const [myAnserwerInitial, setMyAnserwerInitial] = useState({});
+  const [point, setPoint] = useState(0);
 
   const listQuesstion = questions.reduce((acc, option) => {
-    const { idQuestion, question, isCorrect, ...rest } = option;
+    const { idQuestion, questionText, isCorrect, ...rest } = option;
 
     if (!acc[idQuestion]) {
       acc[idQuestion] = {
         idQuestion,
-        question,
+        questionText,
         options: [],
       };
     }
@@ -31,19 +34,14 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
     return acc;
   }, {});
 
-  const getOptionById = (idOption) => {
-    const indexOption = questions.findIndex(
-      (item) => item?.idOption === idOption
-    );
-
-    return questions[indexOption]?.optionText;
-  };
-
   let listQuestionFix = Object.values(listQuesstion);
 
+  const initialValue = listMyAnswer.length > 0 ? myAnserwerInitial : {};
+
   const formik = useFormik({
-    initialValues: {},
+    initialValues: initialValue,
     onSubmit: (values) => {
+      console.log("values", values);
       handleSubmitQuestion(values);
     },
   });
@@ -52,27 +50,21 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        `${domainAPI}/question/${courseId}/submit-question/${lessonId}`,
+        `${domainAPI}/test-online/${testId}/submit-question`,
         { values: values, userId: localStorage.getItem("idUser") }
       );
+
       setListIsCorrect(res?.data?.result);
       setPoint(res?.data?.point);
+      setMyAnserwerInitial(res?.data?.values);
       setListMyAnswer(Object.values(res?.data?.values));
       listQuestionFix = [];
-      await getProgress();
       setIsLoading(false);
     } catch (error) {
       console.log("err", error);
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    setPoint(0);
-    formik.resetForm();
-    setListIsCorrect([]);
-    setListMyAnswer([]);
-  }, [lessonId]);
 
   const COLUMNS = [
     {
@@ -89,6 +81,11 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
     },
   ];
 
+  useEffect(() => {
+    setListIsCorrect([]);
+    setListMyAnswer([]);
+  }, []);
+
   return (
     <Spin spinning={isLoading}>
       <QuestionStyled>
@@ -99,7 +96,7 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
                 <Row>
                   <Col span={24}>
                     <Text className="question">{`Câu ${index + 1}: ${
-                      question?.question
+                      question?.questionText
                     }`}</Text>
                   </Col>
                   <Col span={24}>
@@ -175,4 +172,4 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
   );
 };
 
-export default Question;
+export default ListQuestion;

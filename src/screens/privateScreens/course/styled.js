@@ -8,6 +8,8 @@ export const WrapperRowStyled = styled(Row)`
     text-align: center;
     font-size: 48px;
     background-color: #96d962;
+    height: 100px;
+    line-height: 100px;
   }
 
   .col-info {

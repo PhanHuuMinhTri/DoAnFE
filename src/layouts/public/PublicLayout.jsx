@@ -30,30 +30,8 @@ const PublicLayout = () => {
       key: "home",
     },
     {
-      label: "TEST ONLINE",
+      label: <Link to={"/test-online"}>TEST ONLINE</Link>,
       key: "test-online",
-      children: [
-        {
-          label: <Link to={"/test-online/n5"}>N5</Link>,
-          key: "test-online-n5",
-        },
-        {
-          label: <Link to={"/test-online/n4"}>N4</Link>,
-          key: "test-online-n4",
-        },
-        {
-          label: <Link to={"/test-online/n3"}>N3</Link>,
-          key: "test-online-n3",
-        },
-        {
-          label: <Link to={"/test-online/n2"}>N2</Link>,
-          key: "test-online-n2",
-        },
-        {
-          label: <Link to={"/test-online/n1"}>N1</Link>,
-          key: "test-online-n1",
-        },
-      ],
     },
     {
       label: "ONLINE",
@@ -82,7 +60,7 @@ const PublicLayout = () => {
       ],
     },
     {
-      label: <Link to={"teacher"}>TEACHER</Link>,
+      label: <Link to={"/public/teacher"}>TEACHER</Link>,
       key: "teacher",
     },
   ];
@@ -127,7 +105,7 @@ const PublicLayout = () => {
             onChange={handleLanguageChange}
             options={itemSelect}
             style={{ width: 70 }}
-            defaultValue={"EN"}
+            defaultValue={"en"}
           />
         </Col>
       </HeaderStyled>
