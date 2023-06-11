@@ -55,7 +55,8 @@ export const HeaderStyled = styled(Row)`
     .ant-menu {
       width: 100%;
       color: #293142;
-      font-family: "Noto-Sans-Japanese-Medium";
+      font-family: "Noto Sans JP", sans-serif !important;
+      font-weight: 500;
       display: flex;
       font-size: 20px;
       justify-content: center;

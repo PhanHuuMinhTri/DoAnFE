@@ -31,6 +31,13 @@ const Course = React.lazy(
     }))
 );
 
+const Teacher = React.lazy(
+  async () =>
+    await import("../screens/publicScreens").then((module) => ({
+      default: module.Teacher,
+    }))
+);
+
 const _publicRoutes = [
   {
     element: (
@@ -54,6 +61,10 @@ const _publicRoutes = [
       {
         element: <Course />,
         path: "/course/public/:type",
+      },
+      {
+        element: <Teacher />,
+        path: "/public/teacher",
       },
     ],
   },

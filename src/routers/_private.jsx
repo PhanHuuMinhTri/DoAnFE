@@ -44,6 +44,35 @@ const TestOnline = React.lazy(
       default: module.TestOnline,
     }))
 );
+
+const QuestionTestOnline = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.QuestionTestOnline,
+    }))
+);
+
+const RankTestOnline = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.RankTestOnline,
+    }))
+);
+
+const Profile = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.Profile,
+    }))
+);
+
+const Teacher = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.Teacher,
+    }))
+);
+
 const _privateRoutes = [
   {
     element: (
@@ -65,7 +94,15 @@ const _privateRoutes = [
 
       {
         element: <TestOnline />,
-        path: "/test-online/:id",
+        path: "/test-online",
+      },
+      {
+        element: <QuestionTestOnline />,
+        path: "test-online/:id",
+      },
+      {
+        element: <RankTestOnline />,
+        path: "test-online/rank/:id",
       },
       {
         element: <PracticeKanjiScreen />,
@@ -78,6 +115,16 @@ const _privateRoutes = [
       {
         element: <CourseStudyScreen />,
         path: "course/:id/study",
+      },
+
+      {
+        element: <Profile />,
+        path: "profile/:id",
+      },
+
+      {
+        element: <Teacher />,
+        path: "teacher",
       },
     ],
   },

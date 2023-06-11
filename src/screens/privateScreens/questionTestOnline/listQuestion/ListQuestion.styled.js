@@ -4,14 +4,21 @@ import { Row } from "antd";
 export const QuestionStyled = styled(Row)`
   height: 100%;
 
-  .col-result {
-    padding: 0px 10px;
+  padding-left: 100px;
 
-    .ant-table {
-      .ant-table-thead {
-        tr > th {
-          background-color: #96d962;
-        }
+  .col-result {
+    padding-right: 20px;
+
+    .ant-table-thead {
+      tr > th {
+        background-color: #96d962;
+        text-align: center;
+      }
+    }
+
+    .ant-table-tbody {
+      tr > td {
+        background-color: #dfdfdf;
       }
     }
 
@@ -38,7 +45,6 @@ export const QuestionStyled = styled(Row)`
       font-size: 16px;
       font-weight: 500;
     }
-
     .ant-radio-group {
       width: 100%;
     }
@@ -55,7 +61,7 @@ export const QuestionStyled = styled(Row)`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 30px;
+      margin: 30px 0px;
 
       .ant-btn {
         width: 150px;
