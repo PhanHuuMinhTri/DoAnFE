@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useOutlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { useOutlet, Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Layout,
   Col,
@@ -11,23 +11,59 @@ import {
   Typography,
   Dropdown,
 } from "antd";
+import axios from "axios";
+import { domainAPI } from "../../configs/dev";
+import { KEY_MENU_PRIVATE } from "../../constants/common";
 
-import { PublicLayoutStyle, HeaderStyled } from "./styled";
+import { PublicLayoutStyle, HeaderStyled, MenuItem } from "./styled";
 
 import LOGO from "../../assets/logo.png";
 
 const { Content } = Layout;
 
+export const ProfileContext = createContext();
+
 const PrivateLayout = () => {
   const outlet = useOutlet();
   const navigate = useNavigate();
+  const [profile, setProfile] = useState();
+
+  const location = useLocation();
 
   const { t, i18n } = useTranslation();
 
+  const getKeyByPath = () => {
+    const listKey = Object.values(KEY_MENU_PRIVATE);
+    const listPath = location.pathname.split("/");
+    const removeNullPath = listPath.filter((item) => item);
+
+    const findIndex = listKey.findIndex((item) => item === removeNullPath[0]);
+
+    if (findIndex >= 0) {
+      return listKey[findIndex];
+    } else return "";
+  };
+
+  const handleSetProfile = (value) => {
+    setProfile(value);
+  };
+
   const handleLanguageChange = (value) => {
-    console.log("value", value);
+    localStorage.setItem("language", value);
     i18n.changeLanguage(value);
   };
+
+  const getProfile = async () => {
+    const res = await axios.get(
+      `${domainAPI}/auth/profile/${localStorage.getItem("idUser")}`
+    );
+
+    setProfile(res.data);
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   const itemMenu = [
     {
@@ -36,7 +72,7 @@ const PrivateLayout = () => {
     },
     {
       label: <Link to={"test-online"}>TEST ONLINE</Link>,
-      key: "/test-online",
+      key: "test-online",
     },
     {
       label: "ONLINE",
@@ -66,11 +102,11 @@ const PrivateLayout = () => {
     },
     {
       label: <Link to={"write-kanji"}>WRITE KANJI</Link>,
-      key: "/write-kanji",
+      key: "write-kanji",
     },
     {
       label: <Link to={"teacher"}>TEACHER</Link>,
-      key: "/teacher",
+      key: "teacher",
     },
   ];
 
@@ -83,12 +119,12 @@ const PrivateLayout = () => {
 
   const itemSelect = [
     {
-      label: "EN",
+      label: "VI",
       value: "en",
     },
     {
-      label: "VI",
-      value: "vi",
+      label: "JP",
+      value: "jp",
     },
   ];
 
@@ -96,18 +132,23 @@ const PrivateLayout = () => {
     {
       key: "1",
       label: (
-        <p
+        <div
+          className="menu-item"
           onClick={() => {
             navigate(`/profile/${localStorage.getItem("idUser")}`);
           }}
         >
-          Profile
-        </p>
+          <MenuItem>Profile</MenuItem>
+        </div>
       ),
     },
     {
       key: "2",
-      label: <p onClick={handleLogout}>Logout</p>,
+      label: (
+        <div className="menu-item" onClick={handleLogout}>
+          <MenuItem>Logout</MenuItem>
+        </div>
+      ),
     },
   ];
 
@@ -121,32 +162,33 @@ const PrivateLayout = () => {
           <Menu
             mode="horizontal"
             items={itemMenu}
-            defaultSelectedKeys={"dashboard"}
+            selectedKeys={getKeyByPath()}
           />
         </Col>
 
         <Col span={4} className="col-auth">
           <div className="profile">
-            <Dropdown menu={{ items }} trigger={"hover"}>
-              <Image
-                preview={false}
-                className="avatar"
-                src={"https://img.freepik.com/free-icon/user_318-159711.jpg"}
-              />
+            <Dropdown menu={{ items }} trigger={"click"}>
+              <Image preview={false} className="avatar" src={profile?.Avatar} />
             </Dropdown>
-            <p className="name">Hello {localStorage.getItem("name")}</p>
           </div>
 
           <Select
             onChange={handleLanguageChange}
             options={itemSelect}
             style={{ width: 70 }}
-            defaultValue={"EN"}
+            defaultValue={localStorage.getItem("language")}
           />
         </Col>
       </HeaderStyled>
       <div className="bottom-header" />
-      <Content className="body-content">{outlet}</Content>
+      <Content className="body-content">
+        <ProfileContext.Provider
+          value={{ profileLayout: profile, handleSetProfile: handleSetProfile }}
+        >
+          {outlet}
+        </ProfileContext.Provider>
+      </Content>
       <Row className="footer">
         <Col span={20} />
         <Col span={4} className="col-info">

@@ -21,8 +21,6 @@ const RankTestOnlineScreen = () => {
     getRank();
   }, [id]);
 
-  console.log("listrank", listRank);
-
   const COLUMNS = [
     {
       title: "Top",

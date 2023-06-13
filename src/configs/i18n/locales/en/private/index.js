@@ -1,3 +1,3 @@
-import homePage from "./homePage.json";
+import dashboard from "./dashboard.json";
 
-export { homePage };
+export { dashboard };

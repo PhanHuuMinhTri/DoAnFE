@@ -5,5 +5,4 @@ import global from "./global.json";
 
 const en = { ...publicLocale, ...privateLocale, ...global };
 console.log("en", en);
-
 export { en };
