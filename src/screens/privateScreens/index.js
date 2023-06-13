@@ -7,3 +7,4 @@ export { default as QuestionTestOnline } from "./questionTestOnline/QuestionTest
 export { default as RankTestOnline } from "./rankTestOnline/RankTestOnline";
 export { default as Profile } from "./profile/Profile";
 export { default as Teacher } from "./teacher/Teacher";
+export { default as ChangePassword } from "./changePassword/ChangePassword";

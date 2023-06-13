@@ -1,5 +1,6 @@
 import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import { Button, Checkbox, Form, Input, Typography, notification } from "antd";
 import axios from "axios";
 import { domainAPI } from "../../../configs/dev";
@@ -10,6 +11,7 @@ import { LoginStyled } from "./styled";
 const { Title } = Typography;
 
 const LoginScreen = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
@@ -21,19 +23,19 @@ const LoginScreen = () => {
     } catch (error) {
       console.log("error", error);
       notification.error({
-        message: "User or password invalid!",
+        message: t("loginPage.username_password_invalid"),
       });
     }
   };
   return (
     <LoginStyled>
-      <Title>Sign In</Title>
+      <Title>{t("loginPage.sign_in")}</Title>
 
       <Form
         name="normal_login"
         className="login-form"
         initialValues={{
-          remember: true,
+          remember: false,
         }}
         onFinish={onFinish}
       >
@@ -42,13 +44,13 @@ const LoginScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: t("loginPage.please_input_username"),
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder={t("loginPage.user_name")}
           />
         </Form.Item>
         <Form.Item
@@ -56,23 +58,23 @@ const LoginScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: t("loginPage.please_input_password"),
             },
           ]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder={t("loginPage.password")}
           />
         </Form.Item>
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>{t("loginPage.remeber_me")}</Checkbox>
           </Form.Item>
 
           <Link className="login-form-forgot" href="">
-            Forgot password
+            {t("loginPage.forgot_password")}
           </Link>
         </Form.Item>
 
@@ -82,9 +84,10 @@ const LoginScreen = () => {
             htmlType="submit"
             className="login-form-button"
           >
-            Sign In
+            {t("loginPage.sign_in")}
           </Button>
-          Or <Link to={"/register"}>Sign up now!</Link>
+          {t("loginPage.or")}{" "}
+          <Link to={"/register"}>{t("loginPage.sign_up_now")}</Link>
         </Form.Item>
       </Form>
     </LoginStyled>

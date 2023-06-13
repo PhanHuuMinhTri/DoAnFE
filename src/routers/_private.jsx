@@ -66,6 +66,13 @@ const Profile = React.lazy(
     }))
 );
 
+const ChangePassword = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.ChangePassword,
+    }))
+);
+
 const Teacher = React.lazy(
   async () =>
     await import("../screens/privateScreens").then((module) => ({
@@ -120,6 +127,11 @@ const _privateRoutes = [
       {
         element: <Profile />,
         path: "profile/:id",
+      },
+
+      {
+        element: <ChangePassword />,
+        path: "profile/password/:id",
       },
 
       {

@@ -4,21 +4,23 @@ import { initReactI18next } from "react-i18next";
 import { LANGUAGE } from "../../constants/language";
 
 import { en } from "./locales/en";
-import { vi } from "./locales/vi";
+import { jp } from "./locales/jp";
+
+console.log("jp", jp);
 
 i18n
   .use(initReactI18next)
   .init({
     returnNull: false,
-    fallbackLng: LANGUAGE.VI,
+    fallbackLng: LANGUAGE.JP,
     debug: false,
-    lng: LANGUAGE.EN,
+    lng: localStorage.getItem("language"),
     resources: {
       en: {
         translation: en,
       },
-      vi: {
-        translation: vi,
+      jp: {
+        translation: jp,
       },
     },
     interpolation: {
@@ -29,7 +31,6 @@ i18n
     throw error;
   });
 
-console.log("i18m", i18n);
 const I18n = i18n;
 
 export { I18n };

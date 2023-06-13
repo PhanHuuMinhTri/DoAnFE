@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { KEY_MENU_PUBLIC } from "../../constants/common";
 import { useOutlet, Link, useNavigate, useLocation } from "react-router-dom";
 import { Layout, Col, Image, Menu, Select, Row, Typography } from "antd";
 
@@ -16,9 +17,26 @@ const { Content } = Layout;
 
 const PublicLayout = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
 
   const handleLanguageChange = (value) => {
+    localStorage.setItem("language", value);
     i18n.changeLanguage(value);
+  };
+  const getKeyByPath = () => {
+    const listKey = Object.values(KEY_MENU_PUBLIC);
+    const listPath = location.pathname.split("/");
+    const removeNullPath = listPath.filter((item) => item);
+
+    if (removeNullPath.length === 0) {
+      return "home";
+    }
+
+    const findIndex = listKey.findIndex((item) => item === removeNullPath[0]);
+    console.log("findIndex", findIndex);
+    if (findIndex >= 0) {
+      return listKey[findIndex];
+    } else return "";
   };
 
   const outlet = useOutlet();
@@ -26,15 +44,15 @@ const PublicLayout = () => {
 
   const items = [
     {
-      label: <Link to={"/"}>HOME</Link>,
+      label: <Link to={"/"}> {t("homePage.home")}</Link>,
       key: "home",
     },
     {
-      label: <Link to={"/test-online"}>TEST ONLINE</Link>,
+      label: <Link to={"/test-online"}>{t("homePage.test_online")}</Link>,
       key: "test-online",
     },
     {
-      label: "ONLINE",
+      label: t("homePage.online"),
       key: "course",
       children: [
         {
@@ -60,19 +78,19 @@ const PublicLayout = () => {
       ],
     },
     {
-      label: <Link to={"/public/teacher"}>TEACHER</Link>,
+      label: <Link to={"/teacher/public"}>{t("homePage.teacher")}</Link>,
       key: "teacher",
     },
   ];
 
   const itemSelect = [
     {
-      label: "EN",
+      label: "VI",
       value: "en",
     },
     {
-      label: "VI",
-      value: "vi",
+      label: "JP",
+      value: "jp",
     },
   ];
 
@@ -83,7 +101,7 @@ const PublicLayout = () => {
           <Image preview={false} className="logo" src={LOGO} alt="logo" />
         </Col>
         <Col span={17} className="col-menu">
-          <Menu defaultSelectedKeys={"home"} mode="horizontal" items={items} />
+          <Menu selectedKeys={getKeyByPath()} mode="horizontal" items={items} />
         </Col>
 
         <Col span={6} className="col-auth">
@@ -92,20 +110,20 @@ const PublicLayout = () => {
               navigate("/login");
             }}
           >
-            Login
+            {t("homePage.login")}
           </LoginButtonStyled>
           <RegisterButtonStyled
             onClick={() => {
               navigate("/register");
             }}
           >
-            Register
+            {t("homePage.register")}
           </RegisterButtonStyled>
           <Select
             onChange={handleLanguageChange}
             options={itemSelect}
             style={{ width: 70 }}
-            defaultValue={"en"}
+            defaultValue={localStorage.getItem("language")}
           />
         </Col>
       </HeaderStyled>

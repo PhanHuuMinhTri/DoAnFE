@@ -39,22 +39,18 @@ const HomeScreen = () => {
 
       <Col span={24} className="col-course-info">
         <Title className="title" level={2}>
-          プロダクト {t("homePage.test")}
+          {t("homePage.product")}
         </Title>
         <Row>
           <Col span={24}>
             <Row className="row-info">
               <Col span={11}>
-                <Title level={2}>Japanese Online</Title>
+                <Title level={2}> {t("homePage.japanese_online")}</Title>
 
-                <Title level={4}>
-                  Học online qua video bài giảng, hệ thống bài test
-                </Title>
+                <Title level={4}>{t("homePage.japanese_online_title")}</Title>
 
                 <Typography>
-                  Với lộ trình được cá nhân hóa và hệ thống bài giảng lên tới
-                  hàng nghìn video/bài test, khóa học cam kết cung cấp đầy đủ
-                  kiến thức theo từng level khác nhau.
+                  {t("homePage.japanese_online_description")}
                 </Typography>
                 <div className="list-link">
                   {localStorage.getItem("isLogin") ? (
@@ -88,16 +84,12 @@ const HomeScreen = () => {
               </Col>
               <Col span={1} />
               <Col span={11}>
-                <Title level={2}>Japanese OFFLINE</Title>
+                <Title level={2}>{t("homePage.japanese_offline")}</Title>
 
-                <Title level={4}>
-                  Học trực tiếp cùng Giảng viên Việt Nam và Giảng viên Nhật Bản
-                  giàu kinh nghiệm
-                </Title>
+                <Title level={4}>{t("homePage.japanese_offline_title")}</Title>
 
                 <Typography>
-                  Lớp học trực tiếp tại Trung tâm Dũng Mori cơ sở Hà Nội, cam
-                  kết đầu ra đảm bảo thi đỗ JLPT sau khi hoàn thành khóa học
+                  {t("homePage.japanese_offline_description")}
                 </Typography>
 
                 <div className="list-link list-link-second">
@@ -112,17 +104,11 @@ const HomeScreen = () => {
 
             <Row className="row-info">
               <Col span={11}>
-                <Title level={2}>Du học Nhật Bản</Title>
+                <Title level={2}> {t("homePage.go_to_japan")}</Title>
 
-                <Title level={4}>
-                  Học online qua video bài giảng, hệ thống bài test
-                </Title>
+                <Title level={4}>{t("homePage.go_to_japan_title")}</Title>
 
-                <Typography>
-                  Với lộ trình được cá nhân hóa và hệ thống bài giảng lên tới
-                  hàng nghìn video/bài test, khóa học cam kết cung cấp đầy đủ
-                  kiến thức theo từng level khác nhau.
-                </Typography>
+                <Typography>{t("homePage.go_to_japan_description")}</Typography>
               </Col>
               <Col span={1} />
               <Col span={12}>

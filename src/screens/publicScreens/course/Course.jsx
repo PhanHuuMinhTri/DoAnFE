@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Typography, Image, Row } from "antd";
+import { useTranslation } from "react-i18next";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,6 +12,7 @@ import { WrapperRowStyled, ButtonStyled } from "./styled";
 const { Title, Text } = Typography;
 
 const Course = () => {
+  const { t } = useTranslation();
   const { type } = useParams();
   const navigate = useNavigate();
 
@@ -37,7 +39,8 @@ const Course = () => {
     <WrapperRowStyled gutter={[48, 48]}>
       <Col span={24}>
         <Title className="title">
-          Khóa học: {infoCourse?.nameCourse.toUpperCase()}
+          {t("coursePublic.course")}
+          {infoCourse?.nameCourse.toUpperCase()}
         </Title>
       </Col>
       <Col span={24} className="col-btn">
@@ -47,8 +50,8 @@ const Course = () => {
           }}
         >
           {localStorage.getItem("isLogin")
-            ? "Vào học ngay"
-            : "Đăng nhập để học"}
+            ? t("coursePublic.study_now")
+            : t("coursePublic.login_to_study")}
           <ArrowRightOutlined />
         </ButtonStyled>
       </Col>
@@ -60,13 +63,15 @@ const Course = () => {
 
           <Col span={24}>
             <Text>
-              <strong>Số lượng:</strong> {infoCourse?.numberLession} bài
+              <strong> {t("coursePublic.numbers")}</strong>
+              {infoCourse?.numberLession}
             </Text>
           </Col>
 
           <Col span={24}>
             <Text>
-              <strong>Số bài test:</strong> {infoCourse?.numberTest} bài{" "}
+              <strong>{t("coursePublic.number_test")}</strong>{" "}
+              {infoCourse?.numberTest}
             </Text>
           </Col>
           <Col span={24}>
@@ -82,7 +87,7 @@ const Course = () => {
         <Row gutter={[24, 24]}>
           <Col span={24}>
             <Text className="col-name">
-              <strong>Giáo viên: </strong> {infoCourse?.name}
+              <strong>{t("coursePublic.teacher")} </strong> {infoCourse?.name}
             </Text>
           </Col>
           <Col span={24}>
@@ -94,7 +99,7 @@ const Course = () => {
           </Col>
           <Col span={24} className="col-sdt">
             <Text>
-              <strong>Số điện thoại: </strong> {infoCourse?.phone}
+              <strong>{t("coursePublic.phone")} </strong> {infoCourse?.phone}
             </Text>
           </Col>
         </Row>

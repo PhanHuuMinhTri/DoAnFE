@@ -55,7 +55,7 @@ export const HeaderStyled = styled(Row)`
     .ant-menu {
       width: 100%;
       color: #293142;
-      font-family: "Noto Sans JP", sans-serif !important;
+      font-family: "Noto Sans", sans-serif;
       font-weight: 500;
       display: flex;
       font-size: 20px;
@@ -77,6 +77,7 @@ export const HeaderStyled = styled(Row)`
     justify-content: center;
 
     .avatar {
+      border-radius: 30px;
       cursor: pointer;
       margin-right: 10px;
       width: 50px;
@@ -99,9 +100,10 @@ export const HeaderStyled = styled(Row)`
 
 export const LoginButtonStyled = styled(Button)`
   font-size: 20px;
-  font-family: "Noto-Sans-Japanese-Medium";
-  width: 120px;
+  font-family: "Noto Sans", sans-serif;
+  width: 130px;
   background-color: #33cc33;
+  padding-right: 10px;
   border: none;
   height: 40px;
   border-top-left-radius: 20px;
@@ -111,9 +113,9 @@ export const LoginButtonStyled = styled(Button)`
   border-right: 2px solid #293142;
 `;
 export const RegisterButtonStyled = styled(Button)`
-  font-family: "Noto-Sans-Japanese-Medium";
+  font-family: "Noto Sans", sans-serif;
   font-size: 20px;
-  width: 120px;
+  width: 140px;
   height: 40px;
   border: none;
   background-color: #33cc33;
@@ -122,4 +124,9 @@ export const RegisterButtonStyled = styled(Button)`
   border-bottom-left-radius: 0px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+`;
+
+export const MenuItem = styled.p`
+  font-size: 16px;
+  font-weight: 500;
 `;

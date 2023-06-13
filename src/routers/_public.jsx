@@ -64,7 +64,7 @@ const _publicRoutes = [
       },
       {
         element: <Teacher />,
-        path: "/public/teacher",
+        path: "/teacher/public",
       },
     ],
   },

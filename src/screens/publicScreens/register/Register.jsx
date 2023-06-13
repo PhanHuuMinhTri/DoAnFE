@@ -2,6 +2,7 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography, notification } from "antd";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { domainAPI } from "../../../configs/dev";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,18 +14,20 @@ const RegisterScreen = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
+  const { t } = useTranslation();
+
   const onFinish = async (values) => {
     try {
       await axios.post(`${domainAPI}/auth/register`, { values });
       navigate("/login");
 
       notification.success({
-        message: "Sign up success!",
+        message: t("registerPage.sign_up_success"),
       });
     } catch (error) {
       console.log("error", error);
       notification.error({
-        message: "User already sign up!",
+        message: t("registerPage.user_already"),
       });
     }
   };
@@ -33,13 +36,13 @@ const RegisterScreen = () => {
     const password = form.getFieldValue("password");
 
     if (value && value !== password) {
-      throw new Error("Password and confirm password do not match");
+      throw new Error(t("registerPage.password_confirm_math"));
     }
   };
 
   return (
     <LoginStyled>
-      <Title>Sign Up</Title>
+      <Title>{t("registerPage.sign_up")}</Title>
 
       <Form
         name="normal_login"
@@ -55,13 +58,13 @@ const RegisterScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: t("registerPage.please_input_account"),
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Account"
+            placeholder={t("registerPage.account")}
           />
         </Form.Item>
 
@@ -70,13 +73,13 @@ const RegisterScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: t("registerPage.please_input_username"),
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="User name"
+            placeholder={t("registerPage.user_name")}
           />
         </Form.Item>
         <Form.Item
@@ -84,14 +87,14 @@ const RegisterScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: t("registerPage.please_input_password"),
             },
           ]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder={t("registerPage.password")}
           />
         </Form.Item>
 
@@ -101,7 +104,7 @@ const RegisterScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Confirm password!",
+              message: t("registerPage.please_input_confirm_password"),
             },
 
             { validator: validateConfirmPassword },
@@ -110,7 +113,7 @@ const RegisterScreen = () => {
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Confirm password"
+            placeholder={t("registerPage.confirm_password")}
           />
         </Form.Item>
 
@@ -119,14 +122,14 @@ const RegisterScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Email!",
+              message: t("registerPage.please_input_email"),
             },
           ]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="text"
-            placeholder="Email"
+            placeholder={t("registerPage.email")}
           />
         </Form.Item>
 
@@ -135,14 +138,14 @@ const RegisterScreen = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Phone!",
+              message: t("registerPage.please_input_phone"),
             },
           ]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="text"
-            placeholder="Phone number"
+            placeholder={t("registerPage.phone")}
           />
         </Form.Item>
 
@@ -152,9 +155,10 @@ const RegisterScreen = () => {
             htmlType="submit"
             className="login-form-button"
           >
-            Sign Up
+            {t("registerPage.sign_up")}
           </Button>
-          Or <Link to={"/register"}>Sign in now!</Link>
+          {t("registerPage.or")}{" "}
+          <Link to={"/login"}>{t("registerPage.sign_in_now")}</Link>
         </Form.Item>
       </Form>
     </LoginStyled>
