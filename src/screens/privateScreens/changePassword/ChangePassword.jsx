@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Typography, Form, Input, notification } from "antd";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { domainAPI } from "../../../configs/dev";
@@ -10,6 +11,7 @@ const { Title } = Typography;
 
 const ChangePassword = () => {
   const { id } = useParams();
+  const { t } = useTranslation();
 
   const [form] = Form.useForm();
 
@@ -17,14 +19,14 @@ const ChangePassword = () => {
     await axios.post(`${domainAPI}/auth/password/${id}`, value);
     form.resetFields();
     notification.success({
-      message: "Change password success!",
+      message: t("profile.update_success"),
     });
   };
   return (
     <ChangePasswordStyled>
       <Row>
         <Col span={24} className="col-title">
-          <Title className="title"> CHANGE PASSWORD</Title>
+          <Title className="title">{t("profile.change_pass")}</Title>
         </Col>
 
         <Col span={12} offset={6} className="col-form">
@@ -40,11 +42,11 @@ const ChangePassword = () => {
             >
               <Form.Item
                 name="password"
-                label="Password"
+                label={t("profile.password")}
                 rules={[
                   {
                     required: true,
-                    message: "Please input your password!",
+                    message: t("profile.please_input_password"),
                   },
                 ]}
                 hasFeedback
@@ -54,13 +56,13 @@ const ChangePassword = () => {
 
               <Form.Item
                 name="confirm"
-                label="Confirm Password"
+                label={t("profile.confirm_password")}
                 dependencies={["password"]}
                 hasFeedback
                 rules={[
                   {
                     required: true,
-                    message: "Please confirm your password!",
+                    message: t("profile.please_input_password"),
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
@@ -68,9 +70,7 @@ const ChangePassword = () => {
                         return Promise.resolve();
                       }
                       return Promise.reject(
-                        new Error(
-                          "The new password that you entered do not match!"
-                        )
+                        new Error(t("profile.password_confirm_math"))
                       );
                     },
                   }),
@@ -80,7 +80,9 @@ const ChangePassword = () => {
               </Form.Item>
 
               <Form.Item className="field-btn">
-                <ButtonStyled htmlType="submit">Change</ButtonStyled>
+                <ButtonStyled htmlType="submit">
+                  {t("profile.save")}
+                </ButtonStyled>
               </Form.Item>
             </Form>
           </div>

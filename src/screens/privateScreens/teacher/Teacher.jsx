@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Row, Col, Typography, List, Avatar, Image } from "antd";
 
 import { domainAPI } from "../../../configs/dev";
@@ -10,6 +11,7 @@ import { TeacherStyled, ListStyled, ButtonStyled } from "./styled";
 const { Title, Text } = Typography;
 
 const TeacherScreen = () => {
+  const { t } = useTranslation();
   const [listTeacher, setListTeacher] = useState([]);
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const TeacherScreen = () => {
     <TeacherStyled>
       <Row>
         <Col span={24} className="col-title">
-          <Title className="title">TEACHER TRICHAN</Title>
+          <Title className="title">{t("teacherPage.teacher")} TRICHAN</Title>
         </Col>
         <Col span={24}>
           <ListStyled
@@ -46,11 +48,15 @@ const TeacherScreen = () => {
               >
                 <List.Item.Meta
                   avatar={<Avatar src={item.avatar} />}
-                  title={<Text>{item.name}</Text>}
+                  title={
+                    <Text>
+                      {t("teacherPage.sen_se")}: {item.name}
+                    </Text>
+                  }
                   description={item.description}
                 />
                 <div className="title-course">
-                  <Text>Các khóa học đang dạy:</Text>
+                  <Text>{t("teacherPage.course_in_progress")}:</Text>
                 </div>
 
                 <div className="list-course">

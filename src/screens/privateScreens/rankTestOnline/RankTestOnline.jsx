@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Typography, Image, Table } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { domainAPI } from "../../../configs/dev";
 import { ContentStyled } from "./styled";
 
@@ -10,6 +11,7 @@ const { Title } = Typography;
 const RankTestOnlineScreen = () => {
   const { id } = useParams();
   const [listRank, setListRank] = useState([]);
+  const { t } = useTranslation();
 
   const getRank = async () => {
     const res = await axios.get(`${domainAPI}/test-online/rank/${id}`);
@@ -28,17 +30,17 @@ const RankTestOnlineScreen = () => {
       key: "top",
     },
     {
-      title: "Name",
+      title: t("testOnline.name"),
       dataIndex: "Name",
       key: "name",
     },
     {
-      title: "Point",
+      title: t("testOnline.point"),
       dataIndex: "point",
       key: "point",
     },
     {
-      title: "Avatar",
+      title: t("testOnline.avatar"),
       dataIndex: "Avatar",
       key: "avatar",
       align: " center",
@@ -50,7 +52,7 @@ const RankTestOnlineScreen = () => {
     <ContentStyled>
       <Row>
         <Col span={24} className="col-title">
-          <Title className="title">RANKING</Title>
+          <Title className="title">{t("testOnline.rank")}</Title>
         </Col>
 
         <Col span={24}>

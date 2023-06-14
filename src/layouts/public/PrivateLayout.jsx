@@ -67,15 +67,15 @@ const PrivateLayout = () => {
 
   const itemMenu = [
     {
-      label: <Link to={"dashboard"}>HOME</Link>,
+      label: <Link to={"dashboard"}>{t("dashboard.home")}</Link>,
       key: "dashboard",
     },
     {
-      label: <Link to={"test-online"}>TEST ONLINE</Link>,
+      label: <Link to={"test-online"}>{t("dashboard.test_online")}</Link>,
       key: "test-online",
     },
     {
-      label: "ONLINE",
+      label: t("dashboard.online"),
       key: "course",
       children: [
         {
@@ -101,11 +101,11 @@ const PrivateLayout = () => {
       ],
     },
     {
-      label: <Link to={"write-kanji"}>WRITE KANJI</Link>,
+      label: <Link to={"write-kanji"}>{t("dashboard.write_kanji")}</Link>,
       key: "write-kanji",
     },
     {
-      label: <Link to={"teacher"}>TEACHER</Link>,
+      label: <Link to={"teacher"}>{t("dashboard.teacher")}</Link>,
       key: "teacher",
     },
   ];
@@ -138,7 +138,7 @@ const PrivateLayout = () => {
             navigate(`/profile/${localStorage.getItem("idUser")}`);
           }}
         >
-          <MenuItem>Profile</MenuItem>
+          <MenuItem>{t("dashboard.profile")}</MenuItem>
         </div>
       ),
     },
@@ -146,7 +146,7 @@ const PrivateLayout = () => {
       key: "2",
       label: (
         <div className="menu-item" onClick={handleLogout}>
-          <MenuItem>Logout</MenuItem>
+          <MenuItem>{t("dashboard.logout")}</MenuItem>
         </div>
       ),
     },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Radio, Col, Row, Button, Spin, Typography, Table } from "antd";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { domainAPI } from "../../../../configs/dev";
 import { useFormik } from "formik";
 
@@ -11,6 +12,7 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
   const [point, setPoint] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [listMyAnswer, setListMyAnswer] = useState([]);
+  const { t } = useTranslation();
 
   const listQuesstion = questions.reduce((acc, option) => {
     const { idQuestion, question, isCorrect, ...rest } = option;
@@ -30,14 +32,6 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
 
     return acc;
   }, {});
-
-  const getOptionById = (idOption) => {
-    const indexOption = questions.findIndex(
-      (item) => item?.idOption === idOption
-    );
-
-    return questions[indexOption]?.optionText;
-  };
 
   let listQuestionFix = Object.values(listQuesstion);
 
@@ -76,14 +70,14 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
 
   const COLUMNS = [
     {
-      title: "Câu",
+      title: "",
       dataIndex: "id",
       key: "id",
       align: "center",
       width: "50px",
     },
     {
-      title: "Đáp án",
+      title: t("privateCourse.answer"),
       dataIndex: "optionText",
       key: "optionText",
     },
@@ -98,7 +92,7 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
               listQuestionFix?.map((question, index) => (
                 <Row>
                   <Col span={24}>
-                    <Text className="question">{`Câu ${index + 1}: ${
+                    <Text className="question">{`${index + 1}. ${
                       question?.question
                     }`}</Text>
                   </Col>
@@ -146,7 +140,7 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
                   formik.handleSubmit();
                 }}
               >
-                Nộp bài
+                {t("privateCourse.submit")}
               </Button>
             </Col>
           </Row>
@@ -156,7 +150,8 @@ const Question = ({ courseId, questions, lessonId, getProgress }) => {
           {listIsCorrect?.length > 0 && (
             <div>
               <p className="title-result">
-                Tổng điểm: {point}/{listQuestionFix?.length || 0}
+                {t("privateCourse.total_point")}: {point}/
+                {listQuestionFix?.length || 0}
               </p>
 
               <Table

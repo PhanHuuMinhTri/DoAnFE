@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Radio, Col, Row, Button, Spin, Typography, Table } from "antd";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { domainAPI } from "../../../../configs/dev";
 import { useFormik } from "formik";
 
@@ -10,6 +11,7 @@ const { Text } = Typography;
 
 const ListQuestion = ({ questions, testId }) => {
   const [listIsCorrect, setListIsCorrect] = useState([]);
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [listMyAnswer, setListMyAnswer] = useState([]);
   const [myAnserwerInitial, setMyAnserwerInitial] = useState({});
@@ -68,14 +70,14 @@ const ListQuestion = ({ questions, testId }) => {
 
   const COLUMNS = [
     {
-      title: "Câu",
+      title: "",
       dataIndex: "id",
       key: "id",
       align: "center",
       width: "50px",
     },
     {
-      title: "Đáp án",
+      title: t("testOnline.answer"),
       dataIndex: "optionText",
       key: "optionText",
     },
@@ -95,7 +97,7 @@ const ListQuestion = ({ questions, testId }) => {
               listQuestionFix?.map((question, index) => (
                 <Row>
                   <Col span={24}>
-                    <Text className="question">{`Câu ${index + 1}: ${
+                    <Text className="question">{`${index + 1}. ${
                       question?.questionText
                     }`}</Text>
                   </Col>
@@ -143,7 +145,7 @@ const ListQuestion = ({ questions, testId }) => {
                   formik.handleSubmit();
                 }}
               >
-                Nộp bài
+                {t("testOnline.submit")}
               </Button>
             </Col>
           </Row>
@@ -153,7 +155,8 @@ const ListQuestion = ({ questions, testId }) => {
           {listIsCorrect?.length > 0 && (
             <div>
               <p className="title-result">
-                Tổng điểm: {point}/{listQuestionFix?.length || 0}
+                {t("testOnline.total_point")}: {point}/
+                {listQuestionFix?.length || 0}
               </p>
 
               <Table

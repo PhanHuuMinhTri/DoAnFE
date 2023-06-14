@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Col, Row, Typography, Image, Progress } from "antd";
 
 import VideoStudy from "./videoStudy/VideoStudy";
@@ -20,6 +21,8 @@ const CourseStudyScreen = () => {
   const [listQuestion, setListQuestion] = useState([]);
   const [progress, setProgress] = useState(0);
   const [historyStudy, setHistoryStudy] = useState({});
+
+  const { t } = useTranslation();
 
   const { id } = useParams();
 
@@ -129,7 +132,7 @@ const CourseStudyScreen = () => {
         ? [
             {
               key: item?.videoUrl,
-              label: `Video ngữ pháp bài ${item?.indexLesson}`,
+              label: `${t("privateCourse.bun_bo_video")} ${item?.indexLesson}`,
               values: { idLesson: item?.idLesson, type: TYPE_MENU.VIDEO },
               isFlaskCard: false,
             },
@@ -137,13 +140,13 @@ const CourseStudyScreen = () => {
         : [
             {
               key: item?.videoUrl,
-              label: `Video từ vựng & kanji bài ${item?.indexLesson}`,
+              label: `${t("privateCourse.kanji_video")} ${item?.indexLesson}`,
               values: { idLesson: item?.idLesson, type: TYPE_MENU.VIDEO },
               isFlaskCard: false,
             },
             {
               key: item?.videoUrl + `${index}`,
-              label: `Flashcard bài  ${item?.indexLesson}`,
+              label: `${t("privateCourse.flash_card")} ${item?.indexLesson}`,
               values: {
                 idLesson: item?.idLesson,
                 type: TYPE_MENU.FLASK_CARD,
@@ -153,10 +156,10 @@ const CourseStudyScreen = () => {
           ],
     label:
       item?.type === TYPE_LESSON.GRAMMAR
-        ? `Ngữ pháp bài ${item?.indexLesson}`
+        ? `${t("privateCourse.bun_bo")} ${item?.indexLesson}`
         : item?.type === TYPE_LESSON.KANJI
-        ? `Kanji bài ${item?.indexLesson}`
-        : `Từ vựng bài ${item?.indexLesson}`,
+        ? `${t("privateCourse.kanji")} ${item?.indexLesson}`
+        : `${t("privateCourse.vocabulary")}  ${item?.indexLesson}`,
     value: item?.idLesson,
   }));
 
@@ -164,13 +167,13 @@ const CourseStudyScreen = () => {
     <CourseStudyStyled>
       <Col span={24}>
         <Title className="title">
-          Khóa học {courseInfo?.nameCourse?.toUpperCase()}{" "}
+          {t("privateCourse.course")} {courseInfo?.nameCourse?.toUpperCase()}{" "}
         </Title>
       </Col>
 
       <Col span={24} className="col-history">
         <Text className="text-history">
-          {historyStudy?.idLesson ? "Bạn đã hoàn thành bài học này!" : ""}
+          {historyStudy?.idLesson ? t("privateCourse.this_lesson_success") : ""}
         </Text>
       </Col>
 
@@ -185,7 +188,7 @@ const CourseStudyScreen = () => {
 
                 <Col span={24}>
                   <Title level={4}>
-                    Bài tập bài {lessonInfo?.indexLesson}:
+                    {t("privateCourse.exercise")} {lessonInfo?.indexLesson}:
                   </Title>
                 </Col>
                 <Col span={24}>
@@ -213,7 +216,7 @@ const CourseStudyScreen = () => {
       <Col span={6} className="col-right">
         <div className="box-progress">
           <Title className="title-progress">
-            Tiến độ: {Math.floor(progress * 100)}%
+            {t("privateCourse.progress")}: {Math.floor(progress * 100)}%
           </Title>
           {progress > 0 && (
             <Progress
