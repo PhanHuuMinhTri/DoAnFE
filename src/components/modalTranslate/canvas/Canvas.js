@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { Stage, Layer, Line, Rect } from "react-konva";
 import html2canvas from "html2canvas";
 import trimCanvas from "trim-canvas";
@@ -10,6 +11,7 @@ const DrawingBoard = ({ setSearch, search }) => {
   const [lines, setLines] = useState([]);
   const isDrawing = useRef(false);
   const [res, setRes] = useState([]);
+  const { t } = useTranslation();
 
   const handleMouseDown = (event) => {
     isDrawing.current = true;
@@ -79,8 +81,8 @@ const DrawingBoard = ({ setSearch, search }) => {
   return (
     <div className="canvas">
       <div className="tool-bar">
-        <ButtonTool onClick={handleUndo}>Undo</ButtonTool>
-        <ButtonTool onClick={handleClear}>Clear</ButtonTool>
+        <ButtonTool onClick={handleUndo}>{t("homePage.undo")}</ButtonTool>
+        <ButtonTool onClick={handleClear}>{t("homePage.clear")}</ButtonTool>
       </div>
       <Stage
         id="drawing-board"

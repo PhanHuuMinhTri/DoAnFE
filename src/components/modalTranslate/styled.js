@@ -69,9 +69,10 @@ export const InputStyled = styled(Input)`
 `;
 
 export const ButtonTool = styled.button`
-  width: 60px;
+  width: 100px;
+  font-weight: 500;
   height: 30px;
-  background-color: #ffffff;
+  background-color: #96d962;
   border-radius: 6px;
   border: 1px solid #d9d9d9;
   cursor: pointer;

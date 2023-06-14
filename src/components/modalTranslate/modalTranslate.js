@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Row, Col, Image, Typography, Table, List, Spin } from "antd";
+import { useTranslation } from "react-i18next";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { SearchOutlined, EditOutlined } from "@ant-design/icons";
@@ -13,6 +14,7 @@ import DrawingBoard from "./canvas/Canvas";
 const { Paragraph } = Typography;
 
 const ModalTranslate = ({ isOpen, setIsOpen }) => {
+  const { t } = useTranslation();
   const handleCancel = () => {
     setIsOpen(false);
   };
@@ -65,25 +67,25 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
       width: 50,
     },
     {
-      title: "Từ",
+      title: t("homePage.key"),
       dataIndex: "text",
       key: "text",
       width: 150,
     },
     {
-      title: "Hiragana",
+      title: t("homePage.hiragana"),
       dataIndex: "hira",
       key: "hira",
       width: 150,
     },
     {
-      title: "Hán Việt",
+      title: t("homePage.kanji_vn"),
       dataIndex: "hv",
       key: "hv",
       width: 200,
     },
     {
-      title: "Nghĩa",
+      title: t("homePage.mean"),
       dataIndex: "mean",
       key: "mean",
     },
@@ -91,7 +93,7 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
 
   return (
     <ModalStyled
-      title={"SEARCH KANJI"}
+      title={t("homePage.search_kanji")}
       open={isOpen}
       onCancel={handleCancel}
       width={"100%"}
@@ -103,7 +105,7 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
             <InputStyled
               allowClear
               value={search}
-              placeholder="Enter kanji here..."
+              placeholder={t("homePage.enter_here")}
               onChange={(value) => {
                 setSearch(value.target.value);
               }}
@@ -138,7 +140,7 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
           <RowTranslateStyled>
             <Col span={6} className="col-image">
               <div className="box-image">
-                <div className="title">Kanji</div>
+                <div className="title">{t("homePage.kanji")}</div>
                 <div className="image">
                   <Image preview={false} src={data?.kanji?.video.poster} />
                   <p style={{ textAlign: "center" }}>{dataMazzi?.mean}</p>
@@ -147,7 +149,7 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
             </Col>
             <Col span={12} className="col-mean">
               <div className="box-mean">
-                <div className="title">Kết quả</div>
+                <div className="title">{t("homePage.result")}</div>
                 <div className="mean">
                   <Paragraph>
                     Bộ: {dataMazzi?.kanji} - {dataMazzi?.mean}
@@ -165,7 +167,9 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
                       </span>
                     ))}
                   </Paragraph>
-                  <Paragraph>Nghĩa: {dataMazzi?.detail}</Paragraph>
+                  <Paragraph>
+                    {t("homePage.mean")}: {dataMazzi?.detail}
+                  </Paragraph>
                 </div>
                 <Table columns={COLUMNS} dataSource={exampleData} />
               </div>
@@ -173,7 +177,7 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
             <Col span={6} className="col-info">
               <div className="box-info">
                 <div className="box-write">
-                  <div className="title">Cách viết</div>
+                  <div className="title">{t("homePage.write")}</div>
                   <div>
                     <ReactPlayer
                       width="100%"
@@ -189,7 +193,9 @@ const ModalTranslate = ({ isOpen, setIsOpen }) => {
                 </div>
 
                 <div className="box-vocabulary">
-                  <div className="title">Từ vựng liên quan</div>
+                  <div className="title">
+                    {t("homePage.vocabulary_related")}
+                  </div>
                   <div>
                     <List
                       bordered
