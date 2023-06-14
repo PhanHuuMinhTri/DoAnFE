@@ -15,5 +15,17 @@
   "go_to_japan": "日本への留学",
   "go_to_japan_title": "日本留学プログラム",
   "go_to_japan_description": "留学プログラム終了後は、日本留学プログラムに参加して働くことができます。",
-  "click_here_to_translate": "クリックして翻訳します"
+  "click_here_to_translate": "クリックして翻訳します",
+  "search_kanji": "漢字を調べる",
+  "enter_here": "間...",
+  "kanji": "漢字",
+  "result": "結果",
+  "write": "書き方",
+  "vocabulary_related": "語彙関連",
+  "key": "じ",
+  "hiragana": "ひらがな",
+  "kanji_vn": "ベトナム語",
+  "mean": "意味",
+  "undo": "元に戻す",
+  "clear": "クリア"
 }
