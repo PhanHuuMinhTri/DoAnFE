@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Typography } from "antd";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 import ListQuestion from "./listQuestion/ListQuestion";
@@ -11,6 +12,7 @@ import { QuestionTestStyled } from "./styled";
 const { Title } = Typography;
 
 const QuestionTestOnlineScreen = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
 
   const [listQuestion, setListQuestion] = useState([]);
@@ -28,7 +30,7 @@ const QuestionTestOnlineScreen = () => {
     <QuestionTestStyled>
       <Row>
         <Col span={24} className="col-title">
-          <Title className="title">BÀI TEST ONLINE</Title>
+          <Title className="title">{t("testOnline.test_online")}</Title>
         </Col>
 
         <Col span={24}>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Typography, notification } from "antd";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { domainAPI } from "../../../configs/dev";
@@ -13,6 +14,7 @@ const { Title } = Typography;
 
 const WriteKanjiScreen = () => {
   const { id } = useParams();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const initailResult = [
@@ -45,20 +47,20 @@ const WriteKanjiScreen = () => {
 
       if (newList.length > 0) {
         notification.success({
-          message: "Đáp án chính xác!",
+          message: t("writeKanji.correct"),
         });
       }
 
       if (newList.length === 0) {
         notification.success({
-          message: "Bạn đã hoàn thành bài tập!",
+          message: t("writeKanji.message"),
         });
 
         navigate("/write-kanji");
       }
     } else {
       notification.warning({
-        message: "Đáp án chưa chính xác!",
+        message: t("writeKanji.incorrect"),
       });
     }
   };
@@ -70,7 +72,7 @@ const WriteKanjiScreen = () => {
   return (
     <WrapperWriteKanjiStyled>
       <Col span={24}>
-        <Title className="title">LUYỆN VIẾT KANJI</Title>
+        <Title className="title">{t("writeKanji.ren_siu_kanji")}</Title>
       </Col>
 
       <Col span={24} className="col-kanji">

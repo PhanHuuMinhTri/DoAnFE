@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Row,
   Col,
@@ -39,6 +40,7 @@ const { Title } = Typography;
 const Profile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { profileLayout, handleSetProfile } = useContext(ProfileContext);
 
@@ -69,7 +71,7 @@ const Profile = () => {
     });
 
     notification.success({
-      message: "Update profile success!",
+      message: t("profile.update_success"),
     });
   };
 
@@ -105,7 +107,7 @@ const Profile = () => {
 
       setAvatar(res.data.Avatar);
       notification.success({
-        message: "Thay đổi avatar thành công!",
+        message: t("profile.update_avatar_success"),
       });
 
       handleSetProfile({
@@ -116,7 +118,7 @@ const Profile = () => {
     } catch (error) {
       console.error("Lỗi tải lên:", error);
       setLoading(false);
-      message.error("Lỗi tải lên!");
+      message.error("error when update!");
     }
   };
 
@@ -133,31 +135,42 @@ const Profile = () => {
         onFinish={onFinish}
       >
         <Form.Item
-          label="Username"
+          label={t("profile.user_name")}
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[
+            { required: true, message: t("profile.please_input_user_name") },
+          ]}
         >
-          <StyledInput prefix={<UserOutlined />} placeholder="Username" />
+          <StyledInput
+            prefix={<UserOutlined />}
+            placeholder={t("profile.user_name")}
+          />
         </Form.Item>
 
         <Form.Item
-          label="Email"
+          label={t("profile.mail")}
           name="email"
-          rules={[{ required: true, message: "Please input your email!" }]}
+          rules={[{ required: true, message: t("profile.please_input_email") }]}
         >
-          <StyledInput prefix={<MailOutlined />} placeholder="Email" />
+          <StyledInput
+            prefix={<MailOutlined />}
+            placeholder={t("profile.mail")}
+          />
         </Form.Item>
 
         <Form.Item
-          label="Phone"
+          label={t("profile.phone")}
           name="phone"
-          rules={[{ required: true, message: "Please input your Phone!" }]}
+          rules={[{ required: true, message: t("profile.please_input_phone") }]}
         >
-          <StyledInput prefix={<PhoneOutlined />} placeholder="Phone number" />
+          <StyledInput
+            prefix={<PhoneOutlined />}
+            placeholder={t("profile.phone")}
+          />
         </Form.Item>
 
         <Form.Item className="field-btn">
-          <ButtonStyled htmlType="submit">Save</ButtonStyled>
+          <ButtonStyled htmlType="submit">{t("profile.save")}</ButtonStyled>
         </Form.Item>
       </Form>
     );
@@ -167,7 +180,7 @@ const Profile = () => {
     <ProfileStyled>
       <Row>
         <Col span={24} className="col-title">
-          <Title className="title">MY PROFILE</Title>
+          <Title className="title">{t("profile.profile")}</Title>
         </Col>
 
         <Col span={6} className="col-avatar">
@@ -200,21 +213,21 @@ const Profile = () => {
         </Col>
         <Col span={14}>
           <div className="field-title">
-            <TitleStyled>My Profile</TitleStyled>
+            <TitleStyled>{t("profile.profile")}</TitleStyled>
           </div>
           {renderForm}
         </Col>
 
         <Col span={4} className="col-security">
           <div className="field-title">
-            <TitleStyled>Security</TitleStyled>
+            <TitleStyled>{t("profile.security")}</TitleStyled>
           </div>
           <ButtonChangePasswordStyled
             onClick={() => {
               navigate(`/profile/password/${id}`);
             }}
           >
-            Change password
+            {t("profile.change_pass")}
             <KeyOutlined />
           </ButtonChangePasswordStyled>
         </Col>

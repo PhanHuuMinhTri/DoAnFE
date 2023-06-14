@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { Stage, Layer, Line, Rect } from "react-konva";
 import html2canvas from "html2canvas";
 import trimCanvas from "trim-canvas";
@@ -8,6 +9,7 @@ import { CanvasStyled, ButtonTool } from "./styled";
 
 const Canvas = ({ setResult }) => {
   const [lines, setLines] = useState([]);
+  const { t } = useTranslation();
   const isDrawing = useRef(false);
 
   const handleMouseDown = (event) => {
@@ -77,9 +79,9 @@ const Canvas = ({ setResult }) => {
   return (
     <CanvasStyled>
       <div className="tool-bar">
-        <ButtonTool onClick={handleUndo}>Undo</ButtonTool>
+        <ButtonTool onClick={handleUndo}> {t("writeKanji.undo")}</ButtonTool>
         <ButtonTool className="clear" onClick={handleClear}>
-          Clear
+          {t("writeKanji.clear")}
         </ButtonTool>
       </div>
       <Stage

@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Typography } from "antd";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { CheckCircleOutlined } from "@ant-design/icons";
 
@@ -9,7 +10,7 @@ const { Text } = Typography;
 
 const TestCard = ({ item }) => {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   return (
     <TestCardStyled>
       <Col span={24} className="col-title-card">
@@ -35,14 +36,14 @@ const TestCard = ({ item }) => {
             navigate(`/test-online/${item?.idLessonTest}`);
           }}
         >
-          Làm bài
+          {t("testOnline.do_test")}
         </ButtonStyled>
         <ButtonStyled
           onClick={() => {
             navigate(`/test-online/rank/${item?.idLessonTest}`);
           }}
         >
-          BXH
+          {t("testOnline.rank")}
         </ButtonStyled>
       </Col>
     </TestCardStyled>
