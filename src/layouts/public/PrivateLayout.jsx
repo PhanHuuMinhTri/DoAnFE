@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
 import { useTranslation } from "react-i18next";
+import { UserOutlined } from "@ant-design/icons";
 import { useOutlet, Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Layout,
@@ -17,6 +18,7 @@ import { KEY_MENU_PRIVATE } from "../../constants/common";
 
 import { PublicLayoutStyle, HeaderStyled, MenuItem } from "./styled";
 
+import DefaultAvatar from "../../assets/user.png";
 import LOGO from "../../assets/logo.png";
 
 const { Content } = Layout;
@@ -169,7 +171,11 @@ const PrivateLayout = () => {
         <Col span={4} className="col-auth">
           <div className="profile">
             <Dropdown menu={{ items }} trigger={"click"}>
-              <Image preview={false} className="avatar" src={profile?.Avatar} />
+              <Image
+                preview={false}
+                className="avatar"
+                src={profile?.Avatar || DefaultAvatar}
+              />
             </Dropdown>
           </div>
 
