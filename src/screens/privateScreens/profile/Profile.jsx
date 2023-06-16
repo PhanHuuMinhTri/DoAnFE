@@ -33,6 +33,8 @@ import {
   ButtonChangePasswordStyled,
 } from "./styled";
 
+import DefaultAvatar from "../../../assets/user.png";
+
 import { ProfileContext } from "../../../layouts/public/PrivateLayout";
 
 const { Title } = Typography;
@@ -189,7 +191,7 @@ const Profile = () => {
               <Avatar
                 className="avatar"
                 shape="square"
-                src={avatar}
+                src={avatar || DefaultAvatar}
                 size={200}
                 icon={<UserOutlined />}
               />

@@ -22,6 +22,11 @@ export const ListStyled = styled(List)`
     .ant-image {
       width: 200px;
       height: 200px;
+
+      .ant-image-img {
+        width: 200px;
+        height: 200px;
+      }
     }
   }
 

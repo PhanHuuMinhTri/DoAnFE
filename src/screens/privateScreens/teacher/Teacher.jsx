@@ -47,7 +47,7 @@ const TeacherScreen = () => {
                 extra={<Image preview={false} src={item.avatar} alt="avatar" />}
               >
                 <List.Item.Meta
-                  avatar={<Avatar src={item.avatar} />}
+                  avatar={<Avatar className="'avatar" src={item.avatar} />}
                   title={
                     <Text>
                       {t("teacherPage.sen_se")}: {item.name}

@@ -39,7 +39,7 @@ const Course = () => {
     <WrapperRowStyled gutter={[48, 48]}>
       <Col span={24}>
         <Title className="title">
-          {t("privateCourse.course")} {infoCourse?.nameCourse.toUpperCase()}
+          {t("privateCourse.course")} {infoCourse?.nameCourse?.toUpperCase()}
         </Title>
       </Col>
       <Col span={24} className="col-btn">
