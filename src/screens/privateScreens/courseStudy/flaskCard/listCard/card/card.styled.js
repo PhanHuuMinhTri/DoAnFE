@@ -27,7 +27,7 @@ export const CardComponentStyled = styled.div`
   }
 
   .front {
-    font-size: 200px;
+    font-size: 100px;
   }
 
   .back {
