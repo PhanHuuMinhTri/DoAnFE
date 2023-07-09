@@ -13,11 +13,13 @@ export const KEY_MENU_PRIVATE = {
   DASHBOARD: "dashboard",
   TEST_ONLINE: "test-online",
   COURSE: "course",
+  LIST_COURSE: "list-course",
   WRITE_KANJI: "write-kanji",
   TEACHER: "teacher",
 };
 
 export const KEY_MENU_PUBLIC = {
   COURSE: "course",
+  LIST_COURSE: "list-course-public",
   TEACHER: "teacher",
 };
