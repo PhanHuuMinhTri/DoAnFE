@@ -72,7 +72,7 @@ const Canvas = ({ setResult }) => {
     const formData = new FormData();
     formData.append("image", blob);
 
-    const res = await axios.post("http://127.0.0.1:5000/predict", formData);
+    const res = await axios.post("http://146.190.88.75:8080/predict", formData);
     setResult(res.data.predictions);
   };
 
