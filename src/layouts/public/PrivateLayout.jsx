@@ -103,6 +103,10 @@ const PrivateLayout = () => {
       ],
     },
     {
+      label: <Link to={"list-course"}>{t("dashboard.list_course")}</Link>,
+      key: "list-course",
+    },
+    {
       label: <Link to={"write-kanji"}>{t("dashboard.write_kanji")}</Link>,
       key: "write-kanji",
     },

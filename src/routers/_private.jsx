@@ -38,6 +38,13 @@ const Course = React.lazy(
     }))
 );
 
+const ListCourse = React.lazy(
+  async () =>
+    await import("../screens/privateScreens").then((module) => ({
+      default: module.ListCourse,
+    }))
+);
+
 const TestOnline = React.lazy(
   async () =>
     await import("../screens/privateScreens").then((module) => ({
@@ -97,6 +104,11 @@ const _privateRoutes = [
       {
         element: <Course />,
         path: "/course/:type",
+      },
+
+      {
+        element: <ListCourse />,
+        path: "/list-course",
       },
 
       {

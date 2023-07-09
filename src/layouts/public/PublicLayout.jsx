@@ -78,6 +78,12 @@ const PublicLayout = () => {
       ],
     },
     {
+      label: (
+        <Link to={"list-course-public"}>{t("dashboard.list_course")}</Link>
+      ),
+      key: "list-course-public",
+    },
+    {
       label: <Link to={"/teacher/public"}>{t("homePage.teacher")}</Link>,
       key: "teacher",
     },
